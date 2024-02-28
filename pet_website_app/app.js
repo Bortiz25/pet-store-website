@@ -1,5 +1,6 @@
+
 var createError = require('http-errors');
-var express = require('express');
+const express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -10,6 +11,10 @@ const loginRouter = require('./routes/login');
 
 var app = express();
 const port = 3000;
+
+// database connection
+const connectMongo = require("./database");
+connectMongo();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
