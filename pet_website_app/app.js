@@ -9,13 +9,12 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 
-const app = express();
+var app = express();
 const port = 3000;
 
 // database connection
 const connectMongo = require("./database");
 connectMongo();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
