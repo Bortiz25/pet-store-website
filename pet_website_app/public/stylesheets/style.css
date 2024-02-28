@@ -3,6 +3,19 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.navBar {
+  overflow: hidden;
+}
+
+.navBar a {
+  color: white;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 15px;
+}
+
 a {
   color: #00B7FF;
 }
+
