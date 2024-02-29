@@ -11,6 +11,7 @@ const productsRouter = require('./routes/products');
 const aboutRouter = require('./routes/about');
 const shoppingCartRouter = require('./routes/shoppingCart')
 
+
 var app = express();
 const port = 3000;
 
@@ -50,8 +51,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(port, function () {
-  console.log(`Example app listening on port ${port}`);
-});
+//app.listen(port, function () {
+//console.log(`Example app listening on port ${port}`);
+//});
 
 module.exports = app;
