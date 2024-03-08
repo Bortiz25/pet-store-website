@@ -16,9 +16,9 @@ h1 {
 .navBar a {
   font-family: 'ABeeZee';
   color: white;
-  display: block;
+  display: inline-block;
   text-decoration: none;
-  text-align: center;
+  text-align: left;
   padding: 15px;
 }
 
