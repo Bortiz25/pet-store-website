@@ -1,6 +1,12 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px;
+  font-family: 'ABeeZee';
+}
+
+h1 {
+  font: 30px;
+  font-family: 'Caudex';
 }
 
 .navBar {
@@ -8,6 +14,7 @@ body {
 }
 
 .navBar a {
+  font-family: 'ABeeZee';
   color: white;
   display: block;
   text-decoration: none;
@@ -19,3 +26,22 @@ a {
   color: #00B7FF;
 }
 
+b {
+  font-family: 'ABeeZee';
+  padding: 50px;
+  font: 20px;
+}
+
+@font-face {
+  font-family: 'ABeeZee';
+  font-style: normal;
+  font-weight: 400;
+  src: local('ABeeZee'), local('ABeeZee-Regular'), url(http://themes.googleusercontent.com/static/fonts/abeezee/v1/JYPhMn-3Xw-JGuyB-fEdNA.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Caudex';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Caudex'), url(http://themes.googleusercontent.com/static/fonts/caudex/v3/03NMplHkN8ROgyklztlsOQ.ttf) format('truetype');
+}

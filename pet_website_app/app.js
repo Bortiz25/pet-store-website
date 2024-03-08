@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const aboutRouter = require('./routes/about');
 const shoppingCartRouter = require('./routes/shoppingCart')
+const loginRouter = require('./routes/login')
 
 var app = express();
 const port = 3000;
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/login',loginRouter)
 app.use('/pages/products',productsRouter);
 app.use('/pages/about',aboutRouter);
 app.use('/pages/shoppingCart',shoppingCartRouter)
