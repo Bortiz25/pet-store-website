@@ -22,6 +22,16 @@ h1 {
   padding: 15px;
 }
 
+.navBar h1 {
+  font: 20px;
+  font-family: 'Caudex';
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+  text-align: left;
+  padding: 15px;
+}
+
 a {
   color: #00B7FF;
 }
