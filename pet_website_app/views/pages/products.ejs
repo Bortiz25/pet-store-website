@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <h1> <%=title%> </h1>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
     </head>
-        <body>
-            <h5> Example of first Product: <%=products[0]%></h5>
-        </body>
+    <%- include('../partials/navigationBar') %>
+    <body>
+      <h1> <%=title%> </h1>
+      <h5> Example of first Product: <%=products[0]%></h5>
+    </body>
+    <%- include('../partials/copyright') %>
 </html>
