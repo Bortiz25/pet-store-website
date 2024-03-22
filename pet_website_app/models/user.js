@@ -26,6 +26,7 @@ class UserClass {
         this.password = password;
     }
 
+    
     display() {}
     getUserName(){}
     getAddress(){}

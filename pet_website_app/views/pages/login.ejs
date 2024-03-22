@@ -3,13 +3,14 @@
 <body>
 <h2><%=title%></h2>
 
-<form>
+<form action="/pages/login" method="post">
   <label for="username">Username:</label><br>
   <input type="text" id="username" name="username"><br>
   <label for="password">Password:</label><br>
   <input type="password" id="password" name="password"><br><br>
-  <input type="submit" value="Submit">
+  <button type="submit">Log In</button>
 </form> 
+
 
 <a href="/">Not a user? Create an account</a>
 </body>

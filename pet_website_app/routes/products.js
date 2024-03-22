@@ -9,7 +9,7 @@ router.get('/', async function(req,res,next) {
   const productList = await Product.find();
   res.render('pages/products', {
     title: 'Products',
-    products: productList
+    //products: productList
   });
 } catch (error) {
     console.error('Error fetching products: ', error);
