@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <p>Hello world</p>
+        <% 
+        var added = false;
+        addProduct('seed',0.03,["seed"],"Bird","","It's a seed!").then(function (result) { added = result; }) 
+        %>
+        <%= added %>
+
+        
+    </body>
+</html>

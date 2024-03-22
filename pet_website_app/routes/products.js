@@ -7,6 +7,8 @@ router.get('/', async function(req,res,next) {
   try {
   // productList is an array of JSON objects from MongoDB
   const productList = await Product.find();
+  const prod = await Product.exists({productName: 'toothbrush'});
+  console.log(prod);
   res.render('pages/products', {
     title: 'Products',
     products: productList
