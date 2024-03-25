@@ -17,7 +17,10 @@ router.get('/', async function(req,res,next) {
       productList[i].tags, productList[i].img,productList[i].description);
     productObjects.push(prod);
   }
- 
+
+  const prod = await Product.exists({productName: 'toothbrush'});
+  console.log(prod);
+
   res.render('pages/products', {
     title: 'Products',
     products: productObjects
