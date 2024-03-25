@@ -4,7 +4,7 @@
 </head>
 <body>
     <h2><%=title%></h2>
-    <form>
+    <form action="/pages/signup" method="post">
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname"><br>
         <label for="lname">Last name:</label><br>
@@ -17,11 +17,12 @@
         <input type="text" id="state" name="state"><br>
         <label for="country">Country:</label>
         <input type="text" id="country" name="country"><br>
+        <label for="admin">Admin:</label><input type="checkbox" id="admin" name="admin"><br>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username"><br>
+        <input type="text" id="username" name="username" required><br>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br><br>
+        <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Sign Up">
-      </form> 
+      </form>
 </body>
 </html>

@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
     state: String,
     country: String,
     userName: String,
-    password: String
+    password: String,
+    isAdmin: Boolean,
 });
 
 //user class code 
@@ -24,6 +25,7 @@ class UserClass {
         this.country = country;
         this.userName = userName;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     
