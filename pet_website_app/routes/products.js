@@ -23,7 +23,7 @@ router.get('/', async function(req,res,next) {
 
   res.render('pages/products', {
     title: 'Products',
-    products: productObjects
+    //products: productList
   });
 } catch (error) {
     console.error('Error fetching products: ', error);
