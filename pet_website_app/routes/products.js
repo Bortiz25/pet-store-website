@@ -16,6 +16,7 @@ router.get('/', async function(req,res,next) {
     let prod = new ProductClass(productList[i].productName, productList[i].price, 
       productList[i].tags, productList[i].img,productList[i].description);
     productObjects.push(prod);
+    console.log(prod.description);
   }
 
   const prod = await Product.exists({productName: 'toothbrush'});
@@ -23,7 +24,8 @@ router.get('/', async function(req,res,next) {
 
   res.render('pages/products', {
     title: 'Products',
-    products: productObjects
+    products: productObjects,
+    defaultImg: "https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
   });
 } catch (error) {
     console.error('Error fetching products: ', error);

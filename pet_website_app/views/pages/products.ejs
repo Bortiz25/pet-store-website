@@ -6,7 +6,12 @@
     <%- include('../partials/navigationBar') %>
     <body>
       <h1> <%=title%> </h1>
-      <h5> The first product object name: <%=products[0].productName%></h5>
+      <% products.forEach((product)=> { %>
+        <h5>
+          <%= product.productName %>
+        </h5>
+      <% }) %>
+    <h5><%= products[0].img %></h5>
     </body>
     <%- include('../partials/copyright') %>
 </html>
