@@ -23,9 +23,6 @@ async function addProduct(_name,_price,_tags,_category,_img,_description) {
   }
 }
 
-
-
-
 router.get('/', function(req, res, next) {
   res.render('pages/addProduct', { title: 'Add Product', addProduct: addProduct});
 });
