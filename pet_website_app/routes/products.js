@@ -14,9 +14,8 @@ router.get('/', async function(req,res,next) {
   // create array of product objects
   for(i=0; i < productList.length; i++){
     let prod = new ProductClass(productList[i].productName, productList[i].price, 
-      productList[i].tags, productList[i].img,productList[i].description);
+      productList[i].tags, productList[i].category, productList[i].img, productList[i].description);
     productObjects.push(prod);
-    console.log(prod.description);
   }
 
   const prod = await Product.exists({productName: 'toothbrush'});
