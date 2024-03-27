@@ -4,13 +4,17 @@
 
 ### Dependencies
 Setting Up dependencies is a simple one word command.
-`npm` 
+```
+npm
+```
 Just call this command from the project directory and all dependencies should be
 downloaded. 
 
 ### Running Server 
 In order to build the local environment and run the server. 
-`npm start`
+```
+npm start
+```
 Call **npm start** and the server builds automatically.
 ```
 > pet-website-app@0.0.0 start
