@@ -21,8 +21,11 @@ router.get('/', async function(req,res,next) {
 
   res.render('pages/products', {
     title: 'Products',
+
     products: productObjects,
-    defaultImg: "https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
+
+    //products: productList
+
   });
 } catch (error) {
     console.error('Error fetching products: ', error);
