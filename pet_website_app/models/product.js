@@ -29,6 +29,9 @@ class ProductClass {
     }
     getDescription() {}
     getPrice(){}
+    addToCart(){
+      
+    }
 }    
 
 // product collection from mongoDB

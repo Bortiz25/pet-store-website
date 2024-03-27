@@ -44,7 +44,7 @@ b {
 
 .column {
   float: left;
-  width: 50%;
+  width: 25%;
   }
 
   .row:after {

@@ -3,8 +3,6 @@ var router = express.Router()
 //router.use(express.json);
 const {Product, ProductClass} = require ('../models/product');
 
-
-
 router.get('/', async function(req,res,next) {
   try {
   // productList is an array of JSON objects from MongoDB

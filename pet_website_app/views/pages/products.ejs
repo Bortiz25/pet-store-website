@@ -6,17 +6,29 @@
     <%- include('../partials/navigationBar') %>
     <body>
       <h1> <%=title%> </h1>
-      <% products.forEach((product)=> { %>
+      <% for(i=0;i<products.length;i++) {%>
         <div class="row">
           <div class="column">
-              <img src=<%= product.img %> style="width:250px;height:250px;">
+              <img src=<%= products[i].img %>>
           </div>
           <div class="column">
-              <h2><%= product.productName %></h2>
-              <h4><%= product.description %></h4>
+              <h2><%= products[i].productName %></h2>
+              <h4><%= products[i].description %></h4>
+              <button type="button" onclick="alert('Added!')">Add to cart</button>
           </div>
+          <%i++%>
+          <%if(i<products.length) {%>
+            <div class="column">
+                <img src=<%= products[i].img %>">
+            </div>
+            <div class="column">
+                <h2><%= products[i].productName %></h2>
+                <h4><%= products[i].description %></h4>
+                <button type="button" onclick="alert('Added!')">Add to cart</button>
+            </div>
+          <%}%>
         </div>
-      <% }) %>
+      <%}%>
     </body>
     <%- include('../partials/copyright') %>
 </html>
