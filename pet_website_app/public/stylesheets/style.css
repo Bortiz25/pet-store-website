@@ -42,6 +42,17 @@ b {
   font: 20px;
 }
 
+.column {
+  float: left;
+  width: 25%;
+  }
+
+  .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  }
+
 @font-face {
   font-family: 'ABeeZee';
   font-style: normal;

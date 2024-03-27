@@ -6,7 +6,31 @@
     <%- include('../partials/navigationBar') %>
     <body>
       <h1> <%=title%> </h1>
-      <h2> <%= user %></h2>
+
+      <% for(i=0;i<products.length;i++) {%>
+        <div class="row">
+          <div class="column">
+              <img src=<%= products[i].img %>>
+          </div>
+          <div class="column">
+              <h2><%= products[i].productName %></h2>
+              <h4><%= products[i].description %></h4>
+              <button type="button" onclick="alert('Added!')">Add to cart</button>
+          </div>
+          <%i++%>
+          <%if(i<products.length) {%>
+            <div class="column">
+                <img src=<%= products[i].img %>">
+            </div>
+            <div class="column">
+                <h2><%= products[i].productName %></h2>
+                <h4><%= products[i].description %></h4>
+                <button type="button" onclick="alert('Added!')">Add to cart</button>
+            </div>
+          <%}%>
+        </div>
+      <%}%>
+
     </body>
     <%- include('../partials/copyright') %>
 </html>

@@ -1,5 +1,3 @@
-
-
 const mongoose = require('mongoose');
 
 // Schema with fields from products collection in MongoDB
@@ -26,8 +24,14 @@ class ProductClass {
     // methods
     display() {}
     getName() {}
+    getImg() {
+      return this.img;
+    }
     getDescription() {}
     getPrice(){}
+    addToCart(){
+      
+    }
 }    
 
 // product collection from mongoDB

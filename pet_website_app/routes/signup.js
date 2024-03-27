@@ -6,11 +6,9 @@ const {User, UserClass} = require('../models/user');
 router.post('/', async (req, res, next ) => {
     doesExist = await User.exists({userName: req.body.username});
     if(!doesExist){
-        let checkbox;
-        let isAdmin
-        if(req.body.admin != null) {
-            checkbox = req.body.admin;
-            isAdmin = checkbox.checked ? true : false;
+        let isAdmin;
+        if(req.body.admin) {
+            isAdmin = true;
         } else{
             isAdmin = false;
         }
