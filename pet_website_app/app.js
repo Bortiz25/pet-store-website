@@ -10,7 +10,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const aboutRouter = require('./routes/about');
-const shoppingCartRouter = require('./routes/shoppingCart');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
 const shoppingCartRouter = require('./routes/shoppingCart');
