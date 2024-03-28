@@ -10,7 +10,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const aboutRouter = require('./routes/about');
-const shoppingCartRouter = require('./routes/shoppingCart');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
 const shoppingCartRouter = require('./routes/shoppingCart');
@@ -37,10 +36,10 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/pages/products',productsRouter);
 app.use('/pages/about',aboutRouter);
-app.use('/pages/shoppingCart',shoppingCartRouter)
 app.use('/pages/signup', signupRouter);
 app.use('/pages/login', loginRouter);
 app.use('/pages/addProduct',addProductRouter)
+app.use('/pages/shoppingCart',shoppingCartRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
