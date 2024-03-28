@@ -1,11 +1,9 @@
 # Parrots and Ferrrets Website
----
 ## Setup 
-
 ### Dependencies
 Setting Up dependencies is a simple one word command.
 ```
-npm
+npm intall
 ```
 Just call this command from the project directory and all dependencies should be
 downloaded. 
