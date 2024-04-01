@@ -13,7 +13,6 @@ const aboutRouter = require('./routes/about');
 const shoppingCartRouter = require('./routes/shoppingCart');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
-const shoppingCartRouter = require('./routes/shoppingCart');
 const addProductRouter = require('./routes/addProduct');
 
 var app = express();
