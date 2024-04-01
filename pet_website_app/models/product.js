@@ -32,9 +32,26 @@ class ProductClass {
     addToCart(){
       
     }
+    showThis() {
+     console.log('these functions work')
+    }
 }    
 
+
+/*
+async function deleteProduct(name_) {
+  try {
+  const value = await Product.deleteOne({productName: name_});
+  console.log("we deleted it!!");
+  console.log(value);
+
+  } catch (err){
+    console.log("error deleting product:", err);
+  }
+}
+*/
 // product collection from mongoDB
 const Product = mongoose.model('Product', productSchema);
 
-module.exports = { ProductClass, Product };
+
+module.exports = { ProductClass, Product }

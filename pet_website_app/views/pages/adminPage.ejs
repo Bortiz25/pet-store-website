@@ -1,9 +1,41 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h2><%=title%></h2>
-
-<h3>Welcome to the <%=title%> page</h3>
-<a href="/">Not a user? Create an account</a>
-</body>
-</html> 
+    <head>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+       
+    </head>
+    <%- include('../partials/navigationBar') %>
+    <body>
+      <h1> <%=title%> </h1>  
+   
+      <% for(i=0;i<products.length;i++) {%>
+        <div class="row">
+          <div class="column">
+              <img src=<%= products[i].img %>>
+          </div>
+          <div class="column">
+              <h2><%= products[i].productName %></h2>
+              <h4><%= products[i].description %></h4>
+           
+              <form action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post">
+                <button type="submit">Delete Product</button>
+              </form>
+           </div>
+          <%i++%>
+          <%if(i<products.length) {%>
+            <div class="column">
+                <img src=<%= products[i].img %>">
+            </div>
+            <div class="column">
+                <h2><%= products[i].productName %></h2>
+                <h4><%= products[i].description %></h4>
+                <form action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post">
+                  <button type="submit">Delete Product</button>
+                </form>
+      </div>
+          <%}%>
+        </div>
+      <%}%>
+    </body>
+    <%- include('../partials/copyright') %>
+</html>
