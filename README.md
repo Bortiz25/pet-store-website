@@ -24,11 +24,11 @@ successfully connected to mongoDB
 If this message above does appear in your terminal you are doing something wrong 👎🏽.
 
 ## MongoDB
-# Database Management 
+### Database Management 
 
 After recieveing an invitation with access to the database, navigate to view all database deployments. Click on the "Cluster0" hyperlink then click on the collections tab. The database is named "Website" and it contains two collections.
 
-# Products collection schema
+### Products collection schema
 
 { 
 "_id": objectId,
@@ -43,7 +43,7 @@ timeStamp: Timestamp
 
 The "product" collection stores product documents in JSON format. Each product document has a unique object ID. The "productTag" field is an array of strings used for filtering products and "img" is a link to the product image. The "category" field for a product is either "Bird" or "Ferret". Products for both animals have "Both" as their category value. "timestamp" is a timestamp object.
 
-# Users collection schema
+### Users collection schema
 { "_id": ObjectID,"Fname": String,
 “LName": String,
 "Email": String,
