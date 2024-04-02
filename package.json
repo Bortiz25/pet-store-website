@@ -1,7 +1,10 @@
 {
-    "scripts": {
-        "start": "cd pet_website_app && npm start",
-        "ci": "cd pet_website_app && npm ci",
-        "test": "cd pet_website_app && npm test"
-    }
+  "scripts": {
+    "start": "cd pet_website_app && npm start",
+    "ci": "cd pet_website_app && npm ci",
+    "test": "jest"
+  },
+  "dependencies": {
+    "jest": "^29.7.0"
+  }
 }
