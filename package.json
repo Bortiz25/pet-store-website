@@ -1,6 +1,7 @@
 {
     "scripts": {
         "start": "cd pet_website_app && npm start",
-        "ci": "cd pet_website_app && npm ci"
+        "ci": "cd pet_website_app && npm ci",
+        "test": "cd pet_website_app && npm test"
     }
 }
