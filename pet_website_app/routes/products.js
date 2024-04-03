@@ -16,16 +16,9 @@ router.get('/', async function(req,res,next) {
     productObjects.push(prod);
   }
 
-  const prod = await Product.exists({productName: 'toothbrush'});
-  console.log(prod);
-
   res.render('pages/products', {
     title: 'Products',
-
-    products: productObjects,
-
-    //products: productList
-
+    products: productObjects
   });
 } catch (error) {
     console.error('Error fetching products: ', error);
