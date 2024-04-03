@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 
 /* GET login page */ 
 router.get('/', function (req, res) {
-    res.render('pages/login', {title: 'log in'});
+    res.render('pages/login', {title: 'Sign In'});
 });
 
 
