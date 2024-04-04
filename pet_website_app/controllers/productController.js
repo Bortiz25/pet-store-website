@@ -19,4 +19,4 @@ async function fetchProducts() {
     
 }
 
-module.exports = fetchProducts;
+module.exports = fetchProducts

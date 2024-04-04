@@ -11,8 +11,9 @@ const userSchema = new mongoose.Schema({
     country: String,
     userName: String,
     password: String,
-    isAdmin: Boolean,
+    isAdmin: Boolean
 });
+
 
 //user class code 
 class UserClass {
