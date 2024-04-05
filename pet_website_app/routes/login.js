@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
         res.render('pages/products', {user: ret, title: "Products", products: productObjects});
     }else if(ret.length != 0 && user.isAdmin){
         res.render('pages/adminPage', {title: 'Admin', products: productObjects});
-    } else res.redirect('/');
+    } else res.render('pages/login', {title: 'log in'});
     } catch(error){error("Error: getting user from database")}
 })
 
