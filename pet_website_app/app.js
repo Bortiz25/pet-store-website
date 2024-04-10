@@ -13,6 +13,9 @@ const aboutRouter = require('./routes/about');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
 const addProductRouter = require('./routes/addProduct');
+const shoppingCartRouter = require('./routes/shoppingCart');
+
+console.log("Hello World from app.js");
 
 var app = express();
 const port = 3000;
