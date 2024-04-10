@@ -10,7 +10,8 @@ router.post('/', async (req, res, next) => {
             req.body.category,
             req.body.img,
             req.body.desc);
-      // go to admin page get ??
+     
+    await productFunctions.addAudit(req.body.name, "Seth", "Added product");
       res.redirect('adminPage');
       
   });

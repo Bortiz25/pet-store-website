@@ -6,7 +6,8 @@ const {Product, ProductClass} = require ('../models/product');
     //route to delete product 
     router.post('/:productId', async (req,res,next)=> {
     try { 
-    const val = await Product.deleteOne({productName: req.params.productId});
+     await Product.deleteOne({productName: req.params.productId});
+     await productFunctions.addAudit(req.params.productId, "Seth", "Deleted product");
     res.redirect('/pages/adminPage');
     } catch (err){
         console.log("error deleting product", error);
@@ -17,7 +18,7 @@ const {Product, ProductClass} = require ('../models/product');
     try {
     productObjects = await productFunctions.fetchProducts();
     res.render('pages/adminPage', {
-      title: 'Admin Dashboard 1',
+      title: 'Admin Dashboard',
       products: productObjects
     });
     } catch (error) {
