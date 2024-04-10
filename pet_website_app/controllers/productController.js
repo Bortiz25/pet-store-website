@@ -19,4 +19,26 @@ async function fetchProducts() {
     
 }
 
-module.exports = fetchProducts;
+async function addProduct(_name,_price,_tags,_category,_img,_description) {
+  // Queries the database to see if there is already a product with the same name
+  const prod = await Product.exists({productName: _name});
+  // If there does not exist a product already, make a new one
+  if(!prod) {
+    const newProd = new Product({productName : _name,
+      price: _price,
+      tags: _tags,
+      category: _category,
+      img: _img,
+      description: _description,
+      timeStamp: (new Date().toString())
+      });
+     
+    newProd.save();
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+module.exports = {addProduct, fetchProducts};

@@ -7,18 +7,21 @@ price: Number,
 tags: Array,
 category: String,
 img: String,
-description: String
+description: String,
+timeStamp: String
 });
 
 //product class starter code
 class ProductClass {
-    constructor(productName, price, tags, category, img, description) {
+    constructor(productName, price, tags, category, img, description, timeStamp) {
     this.productName = productName;
     this.price = price;
     this.tags = tags;
     this.category = category;
     this.img = img;
     this.description = description;
+    this.timeStamp = timeStamp
+
     }
    
     // methods

@@ -1,11 +1,11 @@
 var express = require('express')
 var router = express.Router()
-const fetchProducts = require ('../controllers/fetchController');
+const productFunctions = require ('../controllers/productController');
 
 
 router.get('/', async function(req,res,next) {
   try {
-  productObjects = await fetchProducts();
+  productObjects = await productFunctions.fetchProducts();
 
   res.render('pages/products', {
     title: 'Products',
