@@ -72,5 +72,15 @@ async function addAudit(_name,_admin,_action) {
   }
 }
 
+async function deleteProduct(_name) {
+ try {
+  await Product.deleteOne({productName: _name});
+ }
+ catch (err) {
+  console.log("Error deleting product from database ", err);
+ }
 
-module.exports = {addProduct, fetchProducts, addAudit, auditProducts}; 
+}
+
+
+module.exports = {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct}; 
