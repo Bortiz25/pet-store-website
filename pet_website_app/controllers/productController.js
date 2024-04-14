@@ -57,7 +57,6 @@ async function addProduct(_name,_price,_tags,_category,_img,_description) {
   }
 }
 
-
 async function addAudit(_name,_admin,_action) {
   try {
     const prod = new Audit({productName : _name,
@@ -65,8 +64,7 @@ async function addAudit(_name,_admin,_action) {
       action: _action,
       timeStamp: (new Date().toString())
       });
-     
-    prod.save();
+  prod.save();
     return true
   }
    catch (err) {
