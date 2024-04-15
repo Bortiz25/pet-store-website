@@ -58,7 +58,7 @@ app.use('/pages/products',productsRouter);
 app.use('/pages/about',aboutRouter);
 app.use('/pages/signup', signupRouter);
 app.use('/pages/login', loginRouter);
-app.use('/pages/addProduct',addProductRouter)
+app.use('/pages/addProduct', restricted.adminMiddleware, addProductRouter)
 app.use('/pages/shoppingCart',shoppingCartRouter)
 app.use('/pages/adminPage', restricted.adminMiddleware, adminRouter);
 app.use('/pages/audit',auditRouter);
