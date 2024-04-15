@@ -4,6 +4,7 @@ const productFunctions = require ('../controllers/productController');
 
 
 router.get('/', async function(req,res,next) {
+  console.log(req.session);
   try {
   productObjects = await productFunctions.fetchProducts();
 
