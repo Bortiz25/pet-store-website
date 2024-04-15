@@ -1,9 +1,122 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <h1> <%=title%> </h1>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
     </head>
-        <body>
-            <h5> Example of first Product: <%=products[0]%></h5>
-        </body>
+    <%- include('../partials/navigationBar') %>
+    <body>
+      <h1> <%=title%> </h1>
+      <button type="button" class="collapsible">Filter</button>
+      <div class="content">
+        <p><form action="/pages/products" method="POST">
+            <label for="animal"><h3>Filter by pet</h3></label>
+            <select name="animal" id="animal">
+              <option value=undefined></option>
+              <option value="Bird">Birds</option>
+              <option value="Ferret">Ferrets</option>
+            </select>
+
+            <h3>Filter by tag</h3>
+            <input type="checkbox" id="tag1" name="tag" value="cool">
+            <label for="tag1"> Cool</label><br>
+
+            <input type="checkbox" id="tag2" name="tag" value="fancy">
+            <label for="tag2"> Fancy</label><br>
+
+            <input type="checkbox" id="tag3" name="tag" value="clothing">
+            <label for="tag3"> Clothing</label><br>
+
+            <input type="checkbox" id="tag4" name="tag" value="enclosure">
+            <label for="tag4"> Enclosure</label><br>
+
+            <input type="checkbox" id="tag5" name="tag" value="grooming">
+            <label for="tag5"> Grooming</label><br>
+
+            <input type="checkbox" id="tag6" name="tag" value="food">
+            <label for="tag6"> Food</label><br>
+
+            <input type="checkbox" id="tag7" name="tag" value="expensive">
+            <label for="tag7"> Expensive</label><br>
+
+            <input type="checkbox" id="tag8" name="tag" value="toys">
+            <label for="tag8"> Toys</label><br>
+
+            <input type="checkbox" id="tag9" name="tag" value="seed">
+            <label for="tag9"> Seed</label><br>
+            <br>
+            <button type="submit">Submit</button>
+            <button type="submit">Reset</button>
+          </form>
+        </p>
+      </div>
+      <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+        </script>
+      <script>let currentCart = []</script>
+      <script>let i = 0;</script>
+      <script>let temp = "0"</script>
+      <% for(i=0;i<products.length;i++) {%>
+        <div class="row">
+          <div class="column">
+            <img src=<%= products[i].img %> style="width:100%;height:auto;">
+            <h2><%= products[i].productName %></h2>
+            <h3>$<%= products[i].price %></h3>
+            <body><%= products[i].description %></body>
+            <h3></h3>
+            <script>temp = (i).toString()</script>
+            <button id=temp type="button" onclick="myFunction(i)">Add to cart</button>
+            <script>console.log(temp)</script>
+          </div>
+          <script>i++;</script>
+          <%i++%>
+          <%if(i<products.length) {%>
+            <div class="column">
+              <img src=<%= products[i].img %> style="width:100%;height:auto;">
+              <h2><%= products[i].productName %></h2>
+              <h3>$<%= products[i].price %></h3>
+              <body><%= products[i].description %></body>
+              <h3></h3>
+              <script>temp = (i).toString()</script>
+              <button id=temp type="button" onclick="myFunction(i)">Add to cart</button>
+              <script>console.log(temp)</script>
+            </div>
+          <%}%>
+          <script>i++;</script>
+          <%i++%>
+          <%if(i<products.length) {%>
+            <div class="column">
+              <img src=<%= products[i].img %> style="width:100%;height:auto;">
+              <h2><%= products[i].productName %></h2>
+              <h3>$<%= products[i].price %></h3>
+              <body><%= products[i].description %></body>
+              <h3></h3>
+              <script>temp = (i).toString()</script>
+              <button id=temp type="button" onclick="myFunction(i)">Add to cart</button>
+              <script>console.log(temp)</script>
+            </div>
+          <%}%>
+        </div>
+        <script>i++;</script>
+      <%}%>
+      <script>
+        function myFunction(i) {
+          currentCart.push(i);
+          alert(currentCart);
+        }
+      </script>
+    </body>
+    <%- include('../partials/copyright') %>
 </html>

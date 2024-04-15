@@ -1,11 +1,82 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title> <%=title%> </title>
-      <%- include('../partials/navigationBar') %>
+      <link rel='stylesheet' href='/stylesheets/style.css' />
     </head>
-    <body>
-      <h1><%= title %></h1>
-      <b>Here at Parrots and Ferrets, we are dedicated to transparency, honesty, and bringing you the best products possible. Since our company was founded in 2024, we have focused on providing bird and ferret owners with the best possible food, enclosures, and accessories possible. We believe pets deserve the absolute best and we are committed to providing that to our customers.</b>
-    </body>
+    <%- include('../partials/navigationBar') %>
+    <h2 style="text-align:center">About Parrots and Ferrets</h2>
+
+    <div class="row">
+      <div class="column50">
+        <img src="https://i.ibb.co/fYKJ7S4/Untitled-design.png" style="width:90%;height:auto;">
+      </div>
+      <div class="column50">
+        <p1>
+          Here at Parrots and Ferrets, we are dedicated to transparency, honesty, and bringing you the best products possible. Since our company was founded in 2024, we have focused on providing bird and ferret owners with the best possible food, enclosures, and accessories possible. We believe pets deserve the absolute best and we are committed to providing that to our customers.
+        </p1>
+      </div>
+    </div>
+
+    <br>
+    <h2 style="text-align:center"> Meet our team </h2>
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 4</div>
+        <h3 style="text-align:center"> Laila Carter </h3>
+        <div style="width:40%" class="center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 4</div>
+        <h3 style="text-align:center"> Cole McGuire </h3>
+        <div style="width:40%" class="center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 4</div>
+        <h3 style="text-align:center"> Brandon Ortiz </h3>
+        <div style="width:40%" class="center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">4 / 4</div>
+        <h3 style="text-align:center"> Gaya Rajamony </h3>
+        <div style="width:40%" class="center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+      </div>
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+    </div>
+    <br>
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
+    <br>
+    <script>
+      let slideIndex = 1;
+      showSlides(slideIndex);
+      
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+      
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+      
+      function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+      }
+    </script>
+    <%- include('../partials/copyright') %>
 </html>
