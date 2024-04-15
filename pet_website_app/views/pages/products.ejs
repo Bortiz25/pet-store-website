@@ -9,21 +9,12 @@
       <button type="button" class="collapsible">Filter</button>
       <div class="content">
         <p><form action="/pages/products" method="POST">
-            <h3>Filter by pet</h3>
-            <div>
-              <input type="radio" id="animal1" name="animal" value="Bird">
-              <lable for="animal1"> Birds</lable>
-            </div>
-
-            <div>
-              <input type="radio" id="animal2" name="animal" value="Ferret">
-              <lable for="animal2"> Ferrets</lable>
-            </div>
-
-            <div>
-              <input type="radio" id="animal3" name="animal" value="Both">
-              <lable for="animal3"> Both</lable>
-            </div>
+            <label for="animal"><h3>Filter by pet</h3></label>
+            <select name="animal" id="animal">
+              <option value=undefined></option>
+              <option value="Bird">Birds</option>
+              <option value="Ferret">Ferrets</option>
+            </select>
 
             <h3>Filter by tag</h3>
             <input type="checkbox" id="tag1" name="tag" value="cool">
@@ -54,6 +45,7 @@
             <label for="tag9"> Seed</label><br>
             <br>
             <button type="submit">Submit</button>
+            <button type="submit">Reset</button>
           </form>
         </p>
       </div>
