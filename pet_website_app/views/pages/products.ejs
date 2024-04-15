@@ -6,6 +6,73 @@
     <%- include('../partials/navigationBar') %>
     <body>
       <h1> <%=title%> </h1>
+      <button type="button" class="collapsible">Filter</button>
+      <div class="content">
+        <p><form action="/pages/products" method="POST">
+            <h3>Filter by pet</h3>
+            <div>
+              <input type="radio" id="animal1" name="animal" value="Bird">
+              <lable for="animal1"> Birds</lable>
+            </div>
+
+            <div>
+              <input type="radio" id="animal2" name="animal" value="Ferret">
+              <lable for="animal2"> Ferrets</lable>
+            </div>
+
+            <div>
+              <input type="radio" id="animal3" name="animal" value="Both">
+              <lable for="animal3"> Both</lable>
+            </div>
+
+            <h3>Filter by tag</h3>
+            <input type="checkbox" id="tag1" name="tag" value="cool">
+            <label for="tag1"> Cool</label><br>
+
+            <input type="checkbox" id="tag2" name="tag" value="fancy">
+            <label for="tag2"> Fancy</label><br>
+
+            <input type="checkbox" id="tag3" name="tag" value="clothing">
+            <label for="tag3"> Clothing</label><br>
+
+            <input type="checkbox" id="tag4" name="tag" value="enclosure">
+            <label for="tag4"> Enclosure</label><br>
+
+            <input type="checkbox" id="tag5" name="tag" value="grooming">
+            <label for="tag5"> Grooming</label><br>
+
+            <input type="checkbox" id="tag6" name="tag" value="food">
+            <label for="tag6"> Food</label><br>
+
+            <input type="checkbox" id="tag7" name="tag" value="expensive">
+            <label for="tag7"> Expensive</label><br>
+
+            <input type="checkbox" id="tag8" name="tag" value="toys">
+            <label for="tag8"> Toys</label><br>
+
+            <input type="checkbox" id="tag9" name="tag" value="seed">
+            <label for="tag9"> Seed</label><br>
+            <br>
+            <button type="submit">Submit</button>
+          </form>
+        </p>
+      </div>
+      <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+        </script>
       <script>let currentCart = []</script>
       <script>let i = 0;</script>
       <script>let temp = "0"</script>
@@ -14,6 +81,7 @@
           <div class="column">
             <img src=<%= products[i].img %> style="width:100%;height:auto;">
             <h2><%= products[i].productName %></h2>
+            <h3>$<%= products[i].price %></h3>
             <body><%= products[i].description %></body>
             <h3></h3>
             <script>temp = (i).toString()</script>
@@ -26,6 +94,7 @@
             <div class="column">
               <img src=<%= products[i].img %> style="width:100%;height:auto;">
               <h2><%= products[i].productName %></h2>
+              <h3>$<%= products[i].price %></h3>
               <body><%= products[i].description %></body>
               <h3></h3>
               <script>temp = (i).toString()</script>
@@ -39,6 +108,7 @@
             <div class="column">
               <img src=<%= products[i].img %> style="width:100%;height:auto;">
               <h2><%= products[i].productName %></h2>
+              <h3>$<%= products[i].price %></h3>
               <body><%= products[i].description %></body>
               <h3></h3>
               <script>temp = (i).toString()</script>
