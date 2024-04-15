@@ -3,7 +3,7 @@ const adminMiddleware = (req, res, next) => {
     if(req.session && req.session.user){
         if(req.session.user.isAdmin) next();
     }else {
-        req.status(401).json({message: 'Page not available unless you are an admin. '});
+        res.status(401).json({message: 'Page not available unless you are an admin. '});
     }
 }
 
