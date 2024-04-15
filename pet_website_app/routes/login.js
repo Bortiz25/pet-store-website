@@ -25,7 +25,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-            
 
 /* GET login page */ 
 router.get('/', function (req, res) {
