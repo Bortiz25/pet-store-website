@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
   const fAnimal = req.body.animal;
   const fTags = req.body.tag;
   try {
-    productObjects = await fetchProducts();
+    productObjects = await productFunctions.fetchProducts(); //ISSUE HERE
     let productObjectsFilteredAnimal = [];
     let productObjectsFiltered = [];
     if(fAnimal == undefined) {
