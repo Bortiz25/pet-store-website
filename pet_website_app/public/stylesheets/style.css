@@ -99,6 +99,14 @@ b {
   user-select: none;
 }
 
+.th, .td {
+  border-bottom: 1px solid;
+}
+.table, .th, .td {
+  border-collapse: collapse;
+  padding: 15px;
+}
+
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;

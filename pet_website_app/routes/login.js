@@ -1,34 +1,43 @@
 const express = require('express');
 const router = express.Router();
+const userFunctions = require ('../controllers/userController');
+
 const {User, UserClass} = require ('../models/user');
-const fetchProducts = require ('../controllers/fetchController');
 
 
 router.post('/', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    try {
-    const ret = await User.find({userName: username, password: password});
-    const user = ret[0];
-    productObjects = await fetchProducts();
-    if(ret.length != 0 && !user.isAdmin) {
-        res.render('pages/products', {
-          user: ret,
-          title: "Products",
-          products: productObjects,
-          tags: [],
-          animal: "Both"
+     // userInfo is in JSON format. The pw value is a boolean 
+     const {userInfo, pw} = await userFunctions.findUser(username, password);
+     //if pw is true, user entered correct pw
+     if(pw){    
+        //adding users to the session
+        await User.findOne({userName:username, password: password}).then((user) => {
+            req.session.user = {
+                username: user.userName,
+                isAdmin: user.isAdmin,
+            }
         });
-    }else if(ret.length != 0 && user.isAdmin){
-        res.render('pages/adminPage', {title: 'Admin', products: productObjects});
-    } else res.render('pages/login', {title: 'log in'});
-    } catch(error){error("Error: getting user from database")}
-})
+        if(userInfo.isAdmin){
+            res.redirect('adminPage');
+        } else {
+                res.redirect('products');
+        }
+    }
+    // username and/or pw was incorrect. 
+    else {
+        res.send(
+        '<script> alert("Incorrect username and/or password."); </script>'+
+        '<script> window.location.href = "/pages/login"; </script>'
+        );
+    }
+});
 
 /* GET login page */ 
 router.get('/', function (req, res) {
-    res.render('pages/login', {title: 'Sign In'});
+    if(req.session.user) req.session.user = null;
+    res.render('pages/login', {title: 'log in'});
 });
-
 
 module.exports = router;

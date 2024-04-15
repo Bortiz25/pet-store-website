@@ -1,9 +1,59 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h2><%=title%></h2>
-
-<h3>Welcome to the <%=title%> page</h3>
-<a href="/">Not a user? Create an account</a>
-</body>
-</html> 
+    <head>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <%- include('../partials/navigationBar') %>
+    <body>
+      <h1> <%=title%> </h1>
+       <table>
+        <tr><a href="../pages/addProduct"> New product form </a> </tr>
+        <tr><a href="../pages/audit"> audit table </a> </tr>
+        </table>
+     
+      <script>let currentCart = []</script>
+      <script>let i = 0;</script>
+      <script>let temp = "0"</script>
+      <% for(i=0;i<products.length;i++) {%>
+        <div class="row">
+          <div class="column">
+            <img src=<%= products[i].img %> style="width:100%;height:auto;">
+            <h2><%= products[i].productName %></h2>
+            <body><%= products[i].description %></body>
+            <form action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post">
+                  <button type="submit">Delete Product</button>
+                </form>
+          </div>
+          <script>i++;</script>
+          <%i++%>
+          <%if(i<products.length) {%>
+            <div class="column">
+              <img src=<%= products[i].img %> style="width:100%;height:auto;">
+              <h2><%= products[i].productName %></h2>
+              <body><%= products[i].description %></body>
+              <h3></h3>
+              <form action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post">
+                  <button type="submit">Delete Product</button>
+                </form>
+            </div>
+          <%}%>
+          <script>i++;</script>
+          <%i++%>
+          <%if(i<products.length) {%>
+            <div class="column">
+              <img src=<%= products[i].img %> style="width:100%;height:auto;">
+              <h2><%= products[i].productName %></h2>
+              <body><%= products[i].description %></body>
+              <h3></h3>
+              <form action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post">
+                  <button type="submit">Delete Product</button>
+                </form>
+            </div>
+          <%}%>
+        </div>
+        <script>i++;</script>
+      <%}%>
+     
+    </body>
+    <%- include('../partials/copyright') %>
+</html>
