@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
     }
     else {
       for(i = 0; i < productObjects.length; i++) {
-        if(productObjects[i].category == fAnimal) {
+        if(productObjects[i].category == fAnimal || productObjects[i].category == "Both") {
           productObjectsFilteredAnimal.push(productObjects[i]);
         }
       }
