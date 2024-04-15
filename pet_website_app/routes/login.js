@@ -8,7 +8,6 @@ const {User, UserClass} = require ('../models/user');
 router.post('/', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-
      // userInfo is in JSON format. The pw value is a boolean 
      const {userInfo, pw} = await userFunctions.findUser(username, password);
      //if pw is true, user entered correct pw
@@ -34,7 +33,6 @@ router.post('/', async (req, res) => {
         );
     }
 });
-
 
 /* GET login page */ 
 router.get('/', function (req, res) {

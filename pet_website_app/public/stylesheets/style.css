@@ -146,6 +146,27 @@ b {
   text-align: justify;
 }
 
+/* collapsible menu */
+.collapsible {
+  background-color: #e4e4e4;
+  color: #000000;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  font-size: 15px;
+}
+
 @font-face {
   font-family: 'ABeeZee';
   font-style: normal;
