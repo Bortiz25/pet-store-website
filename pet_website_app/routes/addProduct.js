@@ -3,8 +3,6 @@ var router = express.Router();
 const productFunctions = require('../controllers/productController');
 
 router.post('/', async (req, res, next) => {
-  if(req.session && req.session.user){
-    if(req.session.user.isAdmin){
       await productFunctions.addProduct(
         req.body.name,
         Number(req.body.price),
@@ -13,15 +11,16 @@ router.post('/', async (req, res, next) => {
         req.body.img,
         req.body.desc);
 
-      await productFunctions.addAudit(req.body.name, "Seth", "Added product");
-      
-    }
-  }
+    await productFunctions.addAudit(req.body.name, "Seth", "Added product");
     res.redirect('adminPage');
   });
       
     router.get('/', function(req, res, next) {
+      if(req.session && req.session.user){
+        if(req.session.user.isAdmin){
       res.render('pages/addProduct', { title: 'Add product'});
+        }
+      }
     });
 
 module.exports = router;
