@@ -193,6 +193,9 @@ The navigationBar and copyright `.ejs` files are made in the `views/partials/` d
 ### Styles
 The style `.ccs` file is in `public/stylesheets/` directory. 
 
+## Testing
+
+
 
 
 
