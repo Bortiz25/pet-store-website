@@ -1,6 +1,8 @@
 
 var createError = require('http-errors');
 const express = require('express');
+const session = require('express-session');
+
 var path = require('path');
 const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -14,9 +16,23 @@ const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
 const addProductRouter = require('./routes/addProduct');
 const shoppingCartRouter = require('./routes/shoppingCart');
+//const restricted = require('./routes/restricted-middleware');
 
 var app = express();
 const port = 3000;
+
+// confguration to set up user-session
+const sessionConfig = {
+  name: 'adminToken', //name of the cookie
+  secret: 'kjdklfjakldfj;ajf;',
+  cookie: {
+    maxAge: 1000 * 60 * 60, // time span of cookie
+    secure: false, // for development false is fine, for production set to true
+    httpOnly: false, // true means no acces from javascript
+  },
+  resave: false,
+  saveUninitialized: true, // something to do with laws of tracking users but i don't care
+}
 
 // database connection
 const connectMongo = require("./database");
@@ -26,6 +42,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(session(sessionConfig))
 
 app.use(logger('dev'));
 app.use(express.json());
