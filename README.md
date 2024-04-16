@@ -193,6 +193,11 @@ The navigationBar and copyright `.ejs` files are made in the `views/partials/` d
 ### Styles
 The style `.ccs` file is in `public/stylesheets/` directory. 
 
+## User Manual
 
+### Getting Started
 
+When you open up our site you will be sent initially to the home page.From here you have a 
+blue navigation bar that has all the choices of your next step. There are a few tabs but the 
+one you are looking for is the one that says sign in at the end of the nav bar.
 
