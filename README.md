@@ -205,8 +205,7 @@ one you are looking for is the one that says sign in at the end of the nav bar.
 After navigating to the sign in page you will find the page below. The arrow indicates the "create user"
 link which will help you navigate to the page where you can create an account.
 
-
-<img width="763" alt="create user link" src="https://github.com/Bortiz25/pet-store-website/assets/99363092/dbc303b5-f1d9-40ea-805a-1c3bea603951">
+<img width="467" alt="create user" src="https://github.com/Bortiz25/pet-store-website/assets/99363092/93246794-e448-422c-96bd-af8963523026">
 
 Once you've created an account you can start shopping on the products page.
 
