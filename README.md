@@ -1,4 +1,12 @@
 # Parrots and Ferrrets Website
+## Legend
+
+[Setup](#setup)
+[Database.js](#database.js)
+[Models](#models)
+[Development](#development)
+[User Manual](#user-manual)
+
 ## Setup 
 ### Dependencies
 Setting Up dependencies is a simple one word command.
