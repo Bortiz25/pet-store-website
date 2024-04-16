@@ -61,7 +61,7 @@ app.use('/pages/login', loginRouter);
 app.use('/pages/addProduct', restricted.adminMiddleware, addProductRouter)
 app.use('/pages/shoppingCart',shoppingCartRouter)
 app.use('/pages/adminPage', restricted.adminMiddleware, adminRouter);
-app.use('/pages/audit',auditRouter);
+app.use('/pages/audit',restricted.adminMiddleware,auditRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

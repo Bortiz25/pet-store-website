@@ -1,4 +1,12 @@
 # Parrots and Ferrrets Website
+## Legend
+
+- [Setup](#setup)
+- [Database.js](#database.js)
+- [Models](#models)
+- [Development](#development)
+- [User Manual](#user-manual)
+
 ## Setup 
 ### Dependencies
 Setting Up dependencies is a simple one word command.
@@ -193,6 +201,50 @@ The navigationBar and copyright `.ejs` files are made in the `views/partials/` d
 ### Styles
 The style `.ccs` file is in `public/stylesheets/` directory. 
 
+## User Manual
 
+### Getting Started
+When you open up our site you will be sent initially to the home page.From here you have a 
+blue navigation bar that has all the choices of your next step. There are a few tabs but the 
+one you are looking for is the one that says sign in at the end of the nav bar.
 
+<img width="763" alt="login button" src="https://github.com/Bortiz25/pet-store-website/assets/99363092/28c15116-dbab-4164-89ce-a8d5af298c1a">
+
+After navigating to the sign in page you will find the page below. The arrow indicates the "create user"
+link which will help you navigate to the page where you can create an account.
+
+<img width="467" alt="create user" src="https://github.com/Bortiz25/pet-store-website/assets/99363092/93246794-e448-422c-96bd-af8963523026">
+
+Once you've created an account you can start shopping on the products page.
+
+### Admin 
+If you are an admin that will need to ability to create products and add them to our 
+marketplace you will need to contact the company as the admin must be created by 
+the developers at our company. 
+
+Once you have an admin account you will be given an admin username and password. These
+can be used to sign in on the log in page.
+
+Once you have logged in you will be in the admin view of the website initially in the 
+Admin Products page where you have the ability to delete products that are for sale. 
+
+<img width="467" alt="delete product" src="https://github.com/Bortiz25/pet-store-website/assets/99363092/399c2491-0d4b-4e69-9ac1-224b3e360285">
+
+This button will allow you to delete the products from the page and database. At 
+the top of the Admin dashboard you will see a link to the add products page indicated
+by an arrow in the next image.
+
+<img width="1464" alt="add product" src="https://github.com/Bortiz25/pet-store-website/assets/99363092/35d434d8-6dca-4ff4-a050-58b009891454">
+
+You will be taken to this page, all the necessary information that is needed to list an item 
+will be indicated in the form. 
+
+<img width="435" alt="Screenshot 2024-04-16 at 6 06 02 PM" src="https://github.com/Bortiz25/pet-store-website/assets/99363092/e6eb5a56-668e-41be-b446-49ffd01016a0">
+
+On the same page if you click the audit button you will be guided to the audit table. Which 
+indicates data about the admin and items. 
+
+<img width="933" alt="Screenshot 2024-04-16 at 6 08 06 PM" src="https://github.com/Bortiz25/pet-store-website/assets/99363092/9b04d2c6-7734-498d-b746-07d81b08ff8e">
+
+This table indicates when you add and delete products as an admin. 
 
