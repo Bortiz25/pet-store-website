@@ -4,6 +4,7 @@
 - [Setup](#setup)
 - [Database.js](#database.js)
 - [Models](#models)
+- [Controllers](#controllers)
 - [Development](#development)
 - [User Manual](#user-manual)
 
@@ -100,7 +101,7 @@ we use mongoose, an Object Data Modeling Library, to query data in our database.
 The mongoose.connect() function has a uri string paramater. The uri string for our database is located in our '.env' file. 
 
 ## Controllers
-The 'productController' and 'userController' javascript files are located in the `contollers/` directory.
+The 'productController' and 'userController' javascript files are located in the `contollers/` directory. The 'productController' contain functions to add, delete, and fetch products. The 'userController' contains functions to add users and find users in our database.
 ### Product Controller
 
 Once we import the Product model to this file, we use the mongoose.find() and mongose.exists() to query products.
