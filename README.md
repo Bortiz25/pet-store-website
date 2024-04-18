@@ -39,7 +39,7 @@ If this message above does appear in your terminal you are doing something wrong
 After recieveing an invitation with access to the database, navigate to view all database deployments. Click on the "Cluster0" hyperlink then click on the collections tab. The database is named "Website" and it contains two collections.
 
 
-### Products collection schema
+### 'products' collection schema
 
 The "product" collection stores product documents in JSON format. Each product document has a unique object ID that is autimatically created each time you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" field for a product is either "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
 {
@@ -54,7 +54,7 @@ timeStamp: String
 }
 
 
-### Users collection schema
+### 'users' collection schema
 
 The required fields are "Fname", "Lname", "username", and "password".
 
@@ -77,7 +77,7 @@ The required fields are "Fname", "Lname", "username", and "password".
 }
 
 
-### Audit collection schema
+### 'audits' collection schema
 {
 "id_": ObjectId,
 "productName": String,
@@ -154,12 +154,12 @@ const user = ret[0];
 
 We then return an object of the form : 
 ``` 
-{userInfo: user, pw: true};
+{userInfo: user, access: true};
 ```
-If the userename and paswword combination was found we pw is set to true, otherwise it is false.
+If the username and paswword combination was found 'access' is set to true, otherwise it is false.
 
 ## Models  
-The `models/` directory contains the product, user, and audit `.js` files with their corresponding schemas. we create models for each schema to define data validation rules and enable easy querying of data in MongoDB.
+The `models/` directory contains the product, user, and audit `.js` files with their corresponding schemas. We create models for each schema to define data validation rules and enable easy querying of data in MongoDB.
 
 We use the mongoose.schema() function to create a 'new' object that contains the same fields and datatypes as our product collection in MongoDB. 
 
@@ -197,18 +197,18 @@ Example of a `index.js` file that is rendering the index page using the routes.
 
  # `.ejs` files 
 - about.ejs
-- addProduct.ejs
+- addProduct.ejs:
     includes the form admin users submit to add a new product.
-- adminPage.ejs
+- adminPage.ejs:
     Includes hyperlinks to `audit.ejs` and `addProduct.ejs`. This page contains a grid of all available products with corresponding delete buttons.
-- audit.ejs
+- audit.ejs: 
    Includes the audit table for all products.
-- login.ejs/signup.ejs
+- login.ejs/signup.ejs:
     This page includes the form users can submit to create/log in to their account
-- products.ejs
+- products.ejs: 
    This page contains a grid of available products and code to filter 
    products by tags.
-- shoppingCart.ejs
+- shoppingCart.ejs: 
 
   
 ### Partials 
