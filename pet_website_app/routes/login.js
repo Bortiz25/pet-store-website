@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
 /* GET login page */ 
 router.get('/', function (req, res) {
     if(req.session.user) req.session.user = null;
-    res.render('pages/login', {title: 'log in'});
+    res.render('pages/login', {title: 'Sign In'});
 });
 
 module.exports = router;
