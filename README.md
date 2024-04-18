@@ -159,7 +159,7 @@ We then return an object of the form :
 If the userename and paswword combination was found we pw is set to true, otherwise it is false.
 
 ## Models  
-The `models/` directory contains the product, user, and audit javascript files with their corresponding schemas. 
+The `models/` directory contains the product, user, and audit `.js` files with their corresponding schemas. we create models for each schema to define data validation rules and enable easy querying of data in MongoDB.
 
 We use the mongoose.schema() function to create a 'new' object that contains the same fields and datatypes as our product collection in MongoDB. 
 
@@ -195,7 +195,22 @@ module.exports = router;
 ```
 Example of a `index.js` file that is rendering the index page using the routes.
 
+ # `.ejs` files 
+- about.ejs
+- addProduct.ejs
+    includes the form admin users submit to add a new product.
+- adminPage.ejs
+    Includes hyperlinks to `audit.ejs` and `addProduct.ejs`. This page contains a grid of all available products with corresponding delete buttons.
+- audit.ejs
+   Includes the audit table for all products.
+- login.ejs/signup.ejs
+    This page includes the form users can submit to create/log in to their account
+- products.ejs
+   This page contains a grid of available products and code to filter 
+   products by tags.
+- shoppingCart.ejs
 
+  
 ### Partials 
 The navigationBar and copyright `.ejs` files are made in the `views/partials/` directory.
 
