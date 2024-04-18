@@ -207,8 +207,14 @@ There a few files that need to exist or be created in order for the current test
 In the top level directory, there needs to be a `jest.config.js` file with the following contents. This file allows for the done() function to work in `UnitTest.test.js`.
 ```
 module.exports = {
-    testRunner: 'jest-jasmine2' 
+    testRunner: 'jest-jasmine2',
+    setupFilesAfterEnv: ['./jest.setup.js']
 };
+```
+
+Additionally, the following code needs to be present in a `jest.setup.js` file in your top level directory. This increases the timeout period for all tests. This timeout period increase is necessary for github's virtual machines to finish all of the tests.
+```
+jest.setTimeout(30000);
 ```
 
 The following configurations need to be included `package.json` in the top level directory. These are used to control the `npm start`, `npm ci`, and `npm test` commands used for testing.
@@ -232,7 +238,7 @@ All tests that interact with our database use an in memory version of a mongodb 
 ### Running Unit Tests and Github Integration
 To run unit tests, execute `npm test` in the top level directory or in the `pet_website_app` folder. All tests will run and jest will tell you which of these tests passed and which failed. If the test fails, jest will indicate which call to `expect` and `toBe` failed as well as showing the expected and actual output.
 
-Unit tests will also be run anytime a push or pull request is made on any branch. To check if your 
+Unit tests will also be run anytime a push or pull request is made on any branch. To check if your tests passed, navigate to the actions tab of github and look for the action with the name of your last pushed commit. The Node.js CI workflow is found in the `github/workflows/node.js.yml` file. More information about the steps of the workflow can be found in comments in that file.
 
 
 
