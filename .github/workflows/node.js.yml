@@ -4,10 +4,7 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ "main", "cm_UnitTestingSetup" ]
-  pull_request:
-    branches: [ "main" ]
+  [push, pull_request]
 
 jobs:
   build:
