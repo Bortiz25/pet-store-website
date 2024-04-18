@@ -1,3 +1,4 @@
+
 body {
   font: 14px;
   font-family: 'ABeeZee';
@@ -34,7 +35,7 @@ p1 {
 
 .navBar a {
   font-family: 'ABeeZee';
-  color: white;
+  color: rgb(0, 0, 0);
   display: inline-block;
   text-decoration: none;
   text-align: left;
@@ -44,7 +45,7 @@ p1 {
 .navBar h1 {
   font: 20px;
   font-family: 'Caudex';
-  color: white;
+  color: rgb(0, 0, 0);
   display: inline-block;
   text-decoration: none;
   text-align: left;
@@ -52,7 +53,7 @@ p1 {
 }
 
 a {
-  color: #00B7FF;
+  color: #afc4e3;
 }
 
 b {
