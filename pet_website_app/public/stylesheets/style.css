@@ -10,6 +10,7 @@ h1 {
   font: 30px;
   font-family: 'Caudex';
   padding-left: 15px;
+  padding-top: 35px;
 }
 
 p {
@@ -32,29 +33,22 @@ p1 {
   bottom: 0;
   width: 100%;
 }
+
 .navBar {
   overflow: hidden;
   margin: 0;
   width: 100%;
+  align-items: center;
 }
 
 .navBar a {
   font-family: 'ABeeZee';
-  color: rgb(0, 0, 0);
-  display: inline-block;
+  color: rgb(255, 255, 255);
+  font-weight:bold;
   text-decoration: none;
-  text-align: left;
-  padding: 15px;
-}
-
-.navBar h1 {
-  font: 20px;
-  font-family: 'Caudex';
-  color: rgb(0, 0, 0);
-  display: inline-block;
-  text-decoration: none;
-  text-align: left;
-  padding: 15px;
+  font-size: 18px;
+  padding: 10px;
+  border: 3px solid green;
 }
 
 a {
