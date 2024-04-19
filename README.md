@@ -49,7 +49,7 @@ A collection is like a table in SQL and a document is similar to a row in an SQL
 "tags": Array,  
 "category": String  
 "img": String,  
-"description": String,  
+"description": String,   
 }
 
 The "product" collection stores product documents in JSON format. Each product document has a unique object ID that is automatically inserted each time you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" field for a product can be "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
@@ -57,26 +57,22 @@ The "product" collection stores product documents in JSON format. Each product d
 
 ### 'users' collection schema
 
-{ "_id": ObjectId,  
-
-"fname": String, 
-
-“lName": String,  
-
-"email": String,  
-
-"addy": String,
-"state": String,
-"country": String,
-"username": String,
-"password": String,
-"isAdmin": boolean
+{ "_id": ObjectId,   
+"firstName": String,  
+“lastName": String,   
+"email": String,    
+"addy": String,  
+"state": String,  
+"country": String,  
+"username": String,  
+"password": String,  
+"isAdmin": boolean  
 
 "Cart": [
 {
-"id_": ObjectId,
-"productName" : String,
-"quantity": Integer
+"id_": ObjectId,  
+"productName" : String,  
+"quantity": Integer  
 }]
 }
 
@@ -85,14 +81,10 @@ MongoDB is a flexible database, so you can insert a 'user' document without iden
 ### 'audits' collection schema
 {
 "id_": ObjectId,  
-
 "productName": String,  
-
 "adminName": String,  
-
 "action": String  
-
-"timeStamp": String
+"timeStamp": String  
 }
 
 The action field has the string value "Added product" or "Deleted product". The timestamp string is the javascript Date object stringifyed.
