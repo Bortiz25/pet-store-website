@@ -42,7 +42,7 @@ A collection is like a table in SQL and a document is similar to a row in an SQL
 
 ### 'products' collection schema
 
-{
+{  
 "_id": ObjectId,  
 "productName": String,  
 "price": Double,  
@@ -57,7 +57,8 @@ The "product" collection stores product documents in JSON format. Each product d
 
 ### 'users' collection schema
 
-{ "_id": ObjectId,   
+{  
+"_id": ObjectId,   
 "firstName": String,  
 “lastName": String,   
 "email": String,    
@@ -68,18 +69,17 @@ The "product" collection stores product documents in JSON format. Each product d
 "password": String,  
 "isAdmin": boolean  
 
-"Cart": [
-{
+"Cart": [{
 "id_": ObjectId,  
 "productName" : String,  
 "quantity": Integer  
-}]
+}]  
 }
 
 MongoDB is a flexible database, so you can insert a 'user' document without identifying each field. However, we have code in our application that ensures new user enters their first name, last name, username, and password. 
 
 ### 'audits' collection schema
-{
+{  
 "id_": ObjectId,  
 "productName": String,  
 "adminName": String,  
