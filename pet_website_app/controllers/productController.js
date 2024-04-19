@@ -3,28 +3,28 @@ const {Audit, AuditClass} = require ('../models/audit');
 
 async function auditProducts() {
     try {
-    // productList is an array of JSON objects from MongoDB
-    const productList = await Audit.find();
-    let productObjects = [];
-    // create array of product objects
-    for(i=0; i < productList.length; i++){
-    let prod = new AuditClass(productList[i].productName, productList[i].adminName, 
-        productList[i].action, productList[i].timeStamp);
-    productObjects.push(prod);
-    }
-    return productObjects;
-    
-    } catch (err) {
-        console.log("error fetching audit products" , err);
+      // 'auditList' is an array of JSON documents from the 'audits' collection in MongoDB
+      const auditList = await Audit.find();
+      let auditObjects = [];
+      // convert to array of 'AuditClass' instances
+      for(i=0; i < auditList.length; i++){
+      let prod = new AuditClass(auditList[i].productName, auditList[i].adminName, 
+          auditList[i].action, auditList[i].timeStamp);
+      auditObjects.push(prod);
+      }
+      return auditObjects;
+      
+    } catch (error) {
+        console.log("Error fetching products from 'audits' collection: " , error);
     }
   }
 
   async function fetchProducts() {
     try {
-    // productList is an array of JSON objects from MongoDB
+    // 'productList' is an array of JSON documents from the 'audits' collection in MongoDB
     const productList = await Product.find();
     let productObjects = [];
-    // create array of product objects
+    // convert to array of 'AuditClass' instances
     for(i=0; i < productList.length; i++){
     let prod = new ProductClass(productList[i].productName, productList[i].price, 
         productList[i].tags, productList[i].category, productList[i].img, productList[i].description);
@@ -32,8 +32,8 @@ async function auditProducts() {
     }
     return productObjects;
     
-    } catch (err) {
-        console.log("error fetching products" , err);
+    } catch (error) {
+        console.log("Error fetching products from 'products' collection: " , error);
     }
   }
 async function addProduct(_name,_price,_tags,_category,_img,_description) {
@@ -67,8 +67,8 @@ async function addAudit(_name,_admin,_action) {
   prod.save();
     return true
   }
-   catch (err) {
-    console.log("Error adding product to audit database" , err);
+   catch (error) {
+    console.log("Error adding product to 'audits' collection: " , error);
   }
 }
 
@@ -77,9 +77,10 @@ async function deleteProduct(_name) {
   const doc = await Product.deleteOne({productName: _name});
   return doc.deletedCount == 1;
  }
- catch (err) {
-  console.log("Error deleting product from database ", err);
+ catch (error) {
+  console.log("Error deleting product from 'products' collection: ", error);
   return false;
+
  }
 
 }

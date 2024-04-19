@@ -83,11 +83,11 @@ test("findUser", async (done) => {
     expect(await addUser("Test","User","testuser@gmail.com","One Trinity Place","United States","Texas","testuser1","1234")).toBe(true);
     // Attempt to find that test user in database, should be successful
     const user = await findUser("testuser1","1234");
-    expect(user.pw).toBe(true);
+    expect(user.access).toBe(true);
 
     // Attempt to find user that is not in the database, should fail
     const nonUser = await findUser("testuser2","4321");
-    expect(nonUser.pw).toBe(false);
+    expect(nonUser.access).toBe(false);
 
     done();
 });
