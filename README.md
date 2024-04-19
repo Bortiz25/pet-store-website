@@ -107,7 +107,7 @@ The database file contains code to connect our Node.js application to MongoDB.
 ```
 const mongoose = require("mongoose");
 ```
-we use mongoose, an Object Data Modeling Library, to query data in our database.
+We use mongoose, an Object Data Modeling Library, to query data in our database.
 
 ```
 
@@ -134,7 +134,7 @@ Once we import the Product model to this file, we use mongoose.find() and mongos
 
 **fetchProducts()**  
 
-The async function 'fetchProducts' has no paramaters and returns an array contaning 'Product' class instances.
+The async function 'fetchProducts' has no paramaters and returns an array containing 'Product' class instances.
 
 ```
 const productList = await Product.find();
