@@ -19,6 +19,9 @@ async function addUser(fstName, lstName, email, address, country, state,
             isAdmin: isAdmin
         });
         newUser.save();
+        return true;
+    } else {
+        return false;
     }
   }
 
