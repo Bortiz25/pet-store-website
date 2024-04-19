@@ -87,7 +87,7 @@ Below is an example of a document in the 'products' collection. A collection is 
 }]  
 }
 
-MongoDB is a flexible database, so you can insert a 'user' document without identifying each field. However, we have code in our application that ensures new user enters their first name, last name, username, and password. 
+MongoDB is a flexible database, so you can insert a 'user' document without identifying each field. However, we have code in our application that ensures new users enter their first name, last name, username, and password. 
 
 ### 'audits' collection schema
 {  
