@@ -236,7 +236,7 @@ Example of a `index.js` file that is rendering the index page using the routes.
 - audit.ejs  
    Includes the audit table for all products.
 - login.ejs/signup.ejs  
-    This page includes the form users can submit to create/log in to their account
+    This page includes the form users can submit to create/login to their account
 - products.ejs     
    This page contains a grid of available products and code to filter 
    products by tags.
