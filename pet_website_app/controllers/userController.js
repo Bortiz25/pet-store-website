@@ -20,6 +20,9 @@ async function addUser(fstName, lstName, email, address, country, state,
             isAdmin: isAdmin
         });
         await newUser.save();
+        return true;
+    } else {
+        return false;
     }
   }
 
@@ -37,7 +40,7 @@ async function addUser(fstName, lstName, email, address, country, state,
         else {
             return {userInfo: user, access: false};
         }
-    } catch (errr) {
+    } catch (error) {
         console.log("Error fetching user from 'users' collection: ", error);
     }
   }

@@ -217,6 +217,56 @@ The navigationBar and copyright `.ejs` files are made in the `views/partials/` d
 ### Styles
 The style `.ccs` file is in `public/stylesheets/` directory. 
 
+
+## Unit Testing
+### Overview
+Our unit testing is performed with a combination of `jest` and `mongoose-memory-server` as well as github's Node.js Continuous integration workflow.
+
+### Packages and Dependencies
+Our testing framework requires the installation of several packages. In the top level project directory, you need to  `npm install` the following packages: `jest`, `jest-jasmine2`.
+In the pet_website_app folder, you need to `npm install` the following packages: `mongodb-memory-server`.
+
+### Configuration
+There a few files that need to exist or be created in order for the current testing workflow to run.
+
+In the top level directory, there needs to be a `jest.config.js` file with the following contents. This file allows for the done() function to work in `UnitTest.test.js`.
+```
+module.exports = {
+    testRunner: 'jest-jasmine2',
+    setupFilesAfterEnv: ['./jest.setup.js']
+};
+```
+
+Additionally, the following code needs to be present in a `jest.setup.js` file in your top level directory. This increases the timeout period for all tests. This timeout period increase is necessary for github's virtual machines to finish all of the tests.
+```
+jest.setTimeout(30000);
+```
+
+The following configurations need to be included `package.json` in the top level directory. These are used to control the `npm start`, `npm ci`, and `npm test` commands used for testing.
+```
+"scripts": {
+    "start": "cd pet_website_app && npm start",
+    "ci": "cd pet_website_app && npm ci",
+    "test": "jest --detectOpenHandles --forceExit"
+  },
+```
+
+### Writing Unit Testing Code
+All unit testing code is stored within `pet_website_app/UnitTests.jest.js`. If you would like to write more unit tests, add them to `pet_website_app/UnitTests.jest.js` or place them in a new file with the `.test.js` extension in any directory.
+
+Jest runs test by running the `test` functions. The `test` function takes two arguments: a string representing the name of the test and a function that the test exectutes. The function should list `done` as an argument. Inside the test function will be several calls to `expect` followed by a call to `toBe`. Pass in an expression that you want to test to `expect`, then call `toBe` and pass in the expected value.
+
+There are some additional functions in `UnitTests.jest.js` whose functionality is explained in the comments.
+
+All tests that interact with our database use an in memory version of a mongodb database. Therefore, our actual database is not accessed or modified during testing.
+
+### Running Unit Tests and Github Integration
+To run unit tests, execute `npm test` in the top level directory or in the `pet_website_app` folder. All tests will run and jest will tell you which of these tests passed and which failed. If the test fails, jest will indicate which call to `expect` and `toBe` failed as well as showing the expected and actual output.
+
+Unit tests will also be run anytime a push or pull request is made on any branch. To check if your tests passed, navigate to the actions tab of github and look for the action with the name of your last pushed commit. The Node.js CI workflow is found in the `github/workflows/node.js.yml` file. More information about the steps of the workflow can be found in comments in that file.
+
+
+
 ## User Manual
 
 ### Getting Started
@@ -259,6 +309,7 @@ will be indicated in the form.
 
 On the same page if you click the audit button you will be guided to the audit table. Which 
 indicates data about the admin and items. 
+
 
 <img width="933" alt="Screenshot 2024-04-16 at 6 08 06 PM" src="https://github.com/Bortiz25/pet-store-website/assets/99363092/9b04d2c6-7734-498d-b746-07d81b08ff8e">
 

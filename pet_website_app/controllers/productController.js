@@ -74,10 +74,13 @@ async function addAudit(_name,_admin,_action) {
 
 async function deleteProduct(_name) {
  try {
-  await Product.deleteOne({productName: _name});
+  const doc = await Product.deleteOne({productName: _name});
+  return doc.deletedCount == 1;
  }
- catch (err) {
-  console.log("Error deleting product from 'products' collection: ", err);
+ catch (error) {
+  console.log("Error deleting product from 'products' collection: ", error);
+  return false;
+
  }
 
 }
