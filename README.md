@@ -200,7 +200,7 @@ const productSchema = new mongoose.Schema({productName: String, ...,price: Numbe
 ```
 We then use the mongoose.model() function to create a model of the schema. 
 
-The first argument of the 'model' function is the name of the schema you created. This argument refers to the capitalized, plural name of the 'products' collection name in our database.
+The first argument of the 'model' function is the name of the schema you created. This argument refers to the capitalized, singular name of the collection name in our database. We use 'Product' as the first argument to refer to our 'products' collection.
 
 The second argument is the variable containing the schema.
 
