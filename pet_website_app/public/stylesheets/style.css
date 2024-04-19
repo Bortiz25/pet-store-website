@@ -1,13 +1,19 @@
+
 body {
   font: 14px;
   font-family: 'ABeeZee';
   margin: 0;
-  padding-top: 50px;
+  padding-top: 75px;
 }
 
 h1 {
   font: 30px;
   font-family: 'Caudex';
+  padding-left: 15px;
+}
+
+p {
+  padding-left: 15px;
 }
 
 p1 {
@@ -34,7 +40,7 @@ p1 {
 
 .navBar a {
   font-family: 'ABeeZee';
-  color: white;
+  color: rgb(0, 0, 0);
   display: inline-block;
   text-decoration: none;
   text-align: left;
@@ -44,7 +50,7 @@ p1 {
 .navBar h1 {
   font: 20px;
   font-family: 'Caudex';
-  color: white;
+  color: rgb(0, 0, 0);
   display: inline-block;
   text-decoration: none;
   text-align: left;
@@ -52,7 +58,7 @@ p1 {
 }
 
 a {
-  color: #00B7FF;
+  color: #afc4e3;
 }
 
 b {
@@ -144,6 +150,27 @@ b {
   margin-left: auto;
   margin-right: auto;
   text-align: justify;
+}
+
+/* collapsible menu */
+.collapsible {
+  background-color: #e4e4e4;
+  color: #000000;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  font-size: 15px;
 }
 
 @font-face {
