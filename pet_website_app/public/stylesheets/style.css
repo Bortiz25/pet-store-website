@@ -39,6 +39,7 @@ p1 {
   margin: 0;
   width: 100%;
   align-items: center;
+  display: block;
 }
 
 .navBar a {
