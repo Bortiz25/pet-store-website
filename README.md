@@ -36,9 +36,9 @@ If this message above does appear in your terminal you are doing something wrong
 ## MongoDB
 ### Database Management
 
-After recieveing an invitation with access to the database, create an account then navigate to view all database deployments. Click on the "Cluster0" hyperlink then click on the collections tab. The database is named "Website" and it contains three collections. The three collections are named 'product', 'audits', and 'users'. 
+After recieveing an invitation with access to the database, create an account then navigate to view all database deployments. Click on the "Cluster0" hyperlink then click on the collections tab. The database is named "Website" and it contains three collections. The three collections are named 'products', 'audits', and 'users'. 
 
-A collection is like a table in SQL and a document is similar to a row in an SQL table.
+A collection is like a table in SQL and a document is like a row in an SQL table.
 
 ### 'products' collection schema
 
@@ -47,13 +47,24 @@ A collection is like a table in SQL and a document is similar to a row in an SQL
 "productName": String,  
 "price": Double,  
 "tags": Array,  
-"category": String  
+"category": String,  
 "img": String,  
 "description": String,   
 }
 
-The "product" collection stores product documents in JSON format. Each product document has a unique object ID that is automatically inserted each time you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" field for a product can be "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
+The 'products' collection stores product documents in JSON format. Each product document has a unique object ID that is automatically inserted each time you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" field for a product can be "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
 
+Below is an example of a document in the 'products' collection. A collection is a list of 'product' documents.
+
+{   
+"_id": ObjectId(849jkhsu4799o598),    
+"productName": "Fancy Bowtie",    
+"price": 23.44,    
+"tags": [Expensive, Cool],    
+"category": "Both",    
+"img": "https://www.ties.com/assets/img/how-to-tie-a-tie/thumbs/bow-tie-knot.jpg",    
+"description": "A fancy bowtie"      
+}
 
 ### 'users' collection schema
 
