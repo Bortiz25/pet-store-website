@@ -228,19 +228,19 @@ module.exports = router;
 Example of a `index.js` file that is rendering the index page using the routes.
 
  # `.ejs` files 
-- about.ejs
-- addProduct.ejs:
+- about.ejs  
+- addProduct.ejs  
     includes the form admin users submit to add a new product.
-- adminPage.ejs:
+- adminPage.ejs  
     Includes hyperlinks to `audit.ejs` and `addProduct.ejs`. This page contains a grid of all available products with corresponding delete buttons.
-- audit.ejs: 
+- audit.ejs  
    Includes the audit table for all products.
-- login.ejs/signup.ejs:
+- login.ejs/signup.ejs  
     This page includes the form users can submit to create/log in to their account
-- products.ejs: 
+- products.ejs     
    This page contains a grid of available products and code to filter 
    products by tags.
-- shoppingCart.ejs: 
+- shoppingCart.ejs:  
 
   
 ### Partials 
