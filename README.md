@@ -36,12 +36,12 @@ If this message above does appear in your terminal you are doing something wrong
 ## MongoDB
 ### Database Management
 
-After recieveing an invitation with access to the database, navigate to view all database deployments. Click on the "Cluster0" hyperlink then click on the collections tab. The database is named "Website" and it contains two collections.
+After recieveing an invitation with access to the database, create an account then navigate to view all database deployments. Click on the "Cluster0" hyperlink then click on the collections tab. The database is named "Website" and it contains three collections. The three collections are named 'product', 'audits', and 'users'. 
 
+A collection is like a table in SQL and a document is similar to a row in an SQL table.
 
 ### 'products' collection schema
 
-The "product" collection stores product documents in JSON format. Each product document has a unique object ID that is autimatically created each time you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" field for a product is either "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
 {
 "_id": ObjectId,
 "productName": String,
@@ -49,16 +49,16 @@ The "product" collection stores product documents in JSON format. Each product d
 "tags": Array,
 "category": String
 "img": String,
-description: String,
-timeStamp: String
+"description": String,
 }
+
+The "product" collection stores product documents in JSON format. Each product document has a unique object ID that is automatically inserted each time you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" field for a product can be "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
 
 
 ### 'users' collection schema
 
-The required fields are "Fname", "Lname", "username", and "password".
-
-{ "_id": ObjectId,"fname": String,
+{ "_id": ObjectId,
+"fname": String,
 “lName": String,
 "email": String,
 "addy": String,
@@ -76,6 +76,7 @@ The required fields are "Fname", "Lname", "username", and "password".
 }]
 }
 
+MongoDB is a flexible database, so you can insert a 'user' document without identifying each field. However, we have code in our application that ensures new user enters their first name, last name, username, and password. 
 
 ### 'audits' collection schema
 {
@@ -88,7 +89,6 @@ The required fields are "Fname", "Lname", "username", and "password".
 
 The action field has the string value "Added product" or "Deleted product". The timestamp string is the javascript Date object stringifyed.
 
-
 ## database.js
 
 The database file contains code to connect our Node.js application to MongoDB.
@@ -98,52 +98,71 @@ const mongoose = require("mongoose");
 ```
 we use mongoose, an Object Data Modeling Library, to query data in our database.
 
+```
+
+const connectDb = async () => {
+    try {
+        await mongoose.connect(uri);
+        console.log("Successfully connected to mongoDB")
+
+    }
+    catch (error) {
+        console.log("Error connecting to mongoDB: ", error.message);
+    }
+}
+```
+
 The mongoose.connect() function has a uri string paramater. The uri string for our database is located in our '.env' file. 
 
 ## Controllers
-The 'productController' and 'userController' javascript files are located in the `contollers/` directory. The 'productController' contain functions to add, delete, and fetch products. The 'userController' contains functions to add users and find users in our database.
+The 'productController' and 'userController' javascript files are located in the `contollers/` directory. The 'productController' contains functions to add, delete, and fetch products in our 'products' and 'audits' collections. The 'userController' contains functions to add and find users in our 'users' collection.
+
 ### Product Controller
 
-Once we import the Product model to this file, we use the mongoose.find() and mongose.exists() to query products.
+Once we import the Product model to this file, we use mongoose.find() and mongose.exists() to query products.
 
+**fetchProducts()**
 The async function 'fetchProducts' has no paramaters and returns an array contaning 'Product' class instances.
 
 ```
 const productList = await Product.find();
 ```
-In the 'fetchProducts' function, we use mongoose.find() to retrieve a JSON array contanining all documents from MongoDB that match the sturcture defined by the Product model.
+In the 'fetchProducts()' function, we use mongoose.find() to retrieve a JSON array contanining all documents from MongoDB that match the sturcture defined by the Product model.
 
-We iterate through the 'productList' array and convert each JSON object into instances of our javascript 'Product' class. 
+We then iterate through the 'productList' array and convert each JSON object into instances of our javascript 'Product' class. 
 
-The async 'addProduct' function accepts the name, price, tags, category, img, and description as parameters.
+**addProduct()**
+
+The async 'addProduct()' function accepts the name, price, tags, category, img, and description as parameters.
 
 ```
 const prod = await Product.exists({productName: _name});
 ```
-In the 'addProduct' function, we use mongoose.exists() to check if a product with the given name exists,returning a boolean result. If the product does not exist, we create a new product instance using the 'new' keyword and pass all fields from the parameter to the constructor. The timestamp field for the new product is set to a javascript 'Date' object.
-
+We use mongoose.exists() to check if a product with the given name exists, returning a boolean result. If the product does not exist, we create a new product instance using the 'new' keyword and pass all fields from the parameter to the constructor. 
 
 ```
 const newProd = new Product({productName : _name, ...,
-timeStamp: (new Date().toString())});
+description: _description);
 ```
 
 To save the product to our database, we use the mongoose.save() function. 
 
 ```
-newProd.save();
+await newProd.save();
 ```
-
-The async `auditProducts' function is similiar to the 'fetchProduct' function. The only difference is that we use mongoose.find() on our 'Audit' model. The function returns an array of instances of our 'AuditClass'. 
+**auditProducts() & addAudit()**
+The async 'auditProducts' function is similiar to the 'fetchProduct' function. The only difference is that we use mongoose.find() on our 'Audit' model. The function returns an array of instances of our 'AuditClass'. 
 
 ```
 const productList = await Audit.find();
 ```
 
-The async 'addAudit' function accepts the name, admin name, and action paramaters. 
+The async 'addAudit' function accepts the name, admin name, and action paramaters. The 'addAudit()' adds a product to our 'audits' collection while the 'addProduct()' adds a product to our 'products' collection.
 
 ### User Controller
-The async 'addUser' function accepts the fstName, lstName, email, address, country, state, username, and password parameters. Inside the function, we initialize an 'isAdmin' variable to false. The function is similar to 'addProducts' in the 'productsController' file. 
+
+**addUser()**
+The async 'addUser()' function accepts the fstName, lstName, email, address, country, state, username, and password parameters. Inside the function, we initialize an 'isAdmin' variable to false. The function is similar to 'addProducts()' in the 'productsController' file. 
 
 In the async 'findUser' function we use mongoose.find() to return an array of queried user documents.
 
@@ -156,7 +175,7 @@ We then return an object of the form :
 ``` 
 {userInfo: user, access: true};
 ```
-If the username and paswword combination was found 'access' is set to true, otherwise it is false.
+If the username and paswword combination was found, 'access' is set to true, otherwise it is false.
 
 ## Models  
 The `models/` directory contains the product, user, and audit `.js` files with their corresponding schemas. We create models for each schema to define data validation rules and enable easy querying of data in MongoDB.
