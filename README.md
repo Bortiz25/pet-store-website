@@ -57,10 +57,14 @@ The "product" collection stores product documents in JSON format. Each product d
 
 ### 'users' collection schema
 
-{ "_id": ObjectId,
-"fname": String,
-“lName": String,
-"email": String,
+{ "_id": ObjectId,  
+
+"fname": String, 
+
+“lName": String,  
+
+"email": String,  
+
 "addy": String,
 "state": String,
 "country": String,
@@ -80,10 +84,14 @@ MongoDB is a flexible database, so you can insert a 'user' document without iden
 
 ### 'audits' collection schema
 {
-"id_": ObjectId,
-"productName": String,
-"adminName": String,
-"action": String
+"id_": ObjectId,  
+
+"productName": String,  
+
+"adminName": String,  
+
+"action": String  
+
 "timeStamp": String
 }
 
@@ -121,7 +129,8 @@ The 'productController' and 'userController' javascript files are located in the
 
 Once we import the Product model to this file, we use mongoose.find() and mongose.exists() to query products.
 
-**fetchProducts()**
+**fetchProducts()**  
+
 The async function 'fetchProducts' has no paramaters and returns an array contaning 'Product' class instances.
 
 ```
@@ -150,7 +159,8 @@ To save the product to our database, we use the mongoose.save() function.
 ```
 await newProd.save();
 ```
-**auditProducts() & addAudit()**
+**auditProducts() & addAudit()**  
+
 The async 'auditProducts' function is similiar to the 'fetchProduct' function. The only difference is that we use mongoose.find() on our 'Audit' model. The function returns an array of instances of our 'AuditClass'. 
 
 ```
