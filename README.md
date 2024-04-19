@@ -43,13 +43,13 @@ A collection is like a table in SQL and a document is similar to a row in an SQL
 ### 'products' collection schema
 
 {
-"_id": ObjectId,
-"productName": String,
-"price": Double,
-"tags": Array,
-"category": String
-"img": String,
-"description": String,
+"_id": ObjectId,  
+"productName": String,  
+"price": Double,  
+"tags": Array,  
+"category": String  
+"img": String,  
+"description": String,  
 }
 
 The "product" collection stores product documents in JSON format. Each product document has a unique object ID that is automatically inserted each time you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" field for a product can be "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
