@@ -84,6 +84,18 @@ async function deleteProduct(_name) {
  }
 
 }
+async function deleteAudit(_name) {
+  try {
+   const doc = await Audit.deleteOne({productName: _name});
+   return doc.deletedCount == 1;
+  }
+  catch (error) {
+   console.log("Error deleting product from 'audits' collection: ", error);
+   return false;
+ 
+  }
+ 
+ }
 
 
-module.exports = {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct}; 
+module.exports = {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct, deleteAudit}; 
