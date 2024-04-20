@@ -5,9 +5,9 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-<h2><%=title%></h2>
+<h1><%=title%></h1>
 
-<form action="/pages/login" method="post">
+<form action="/pages/login" method="post" style="padding-left: 15px;">
   <label for="username">Username:</label><br>
   <input type="text" id="username" name="username" required><br>
   <label for="password">Password:</label><br>
@@ -15,6 +15,6 @@
   <button type="submit">Log In</button>
 </form> 
 <br>
-<a href="/pages/signup">Not a user? Create an account</a>
+<a href="/pages/signup" style="padding-left: 15px;">Not a user? Create an account</a>
 </body>
 </html> 

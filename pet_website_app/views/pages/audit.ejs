@@ -4,15 +4,14 @@
   <%- include('../partials/navigationBar') %>
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
-
 <body>
-    <h2><%=title%></h2>
+    <h1><%=title%></h1>
     <table class="table">
         <tr>
             <th class="th">Product name</th>
             <th class="th">Admin name</th>
             <th class="th">Action</th>
-            <th class="th">TimeStamp</th>
+            <th class="th">Timestamp</th>
           </tr>
           <% for(i=0;i<products.length;i++) {%>
             <tr> 
@@ -24,5 +23,9 @@
         <script>i++;</script>
         <%}%>
     </table>
+    <br>
+    <form action="/pages/audit" method="post" style="padding-left:15px">
+      <button type="submit">Clear table</button>
+    </form>
 </body>
 </html>

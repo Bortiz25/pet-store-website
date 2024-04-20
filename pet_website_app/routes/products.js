@@ -23,10 +23,10 @@ router.post('/', async (req, res) => {
   const fAnimal = req.body.animal;
   const fTags = req.body.tag;
   try {
-    productObjects = await productFunctions.fetchProducts(); //ISSUE HERE
+    productObjects = await productFunctions.fetchProducts();
     let productObjectsFilteredAnimal = [];
     let productObjectsFiltered = [];
-    if(fAnimal == undefined) {
+    if(fAnimal == "undefined") {
       productObjectsFilteredAnimal = productObjects;
     }
     else {
@@ -38,6 +38,7 @@ router.post('/', async (req, res) => {
     }
     if(fTags == undefined) {
       productObjectsFiltered = productObjectsFilteredAnimal;
+      console.log(productObjectsFiltered);
     }
     else if(typeof fTags === "string") {
       for(i = 0; i < productObjectsFilteredAnimal.length; i++) {

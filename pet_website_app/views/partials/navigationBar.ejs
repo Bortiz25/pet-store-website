@@ -6,12 +6,14 @@
         <nav class="navBar" style="background-color:black;">
           <br>
         </nav>
-        <nav class="navBar" style="background-color: #00B7FF;">
-            <a href="/" >Parrot and Ferrets</a>
+        <nav class="navBar" style="background-color: #afc4e3;">
+            <a style="font-family: 'Caudex'; font-size: 25px;" href="/" >Parrots and Ferrets</a>
             <a href="/pages/products" >SHOP</a>
             <a href="/pages/about" >ABOUT</a>
             <a href="/pages/shoppingCart" >CART</a>
-            <input type="text">
+            <form action="/pages/search" method="POST" style="display: inline-block">
+              <input type="text" id="search" name="search">
+            </form>
             <a href="/pages/login" >SIGN IN</a>
             <a href="/pages/accountPage">ACCOUNT</a>
         </nav>

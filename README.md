@@ -36,58 +36,69 @@ If this message above does appear in your terminal you are doing something wrong
 ## MongoDB
 ### Database Management
 
-After recieveing an invitation with access to the database, navigate to view all database deployments. Click on the "Cluster0" hyperlink then click on the collections tab. The database is named "Website" and it contains two collections.
+After recieveing an invitation with access to the database, create an account then navigate to view all database deployments. Click on the "Cluster0" hyperlink then click on the collections tab. The database is named "Website" and it contains three collections. The three collections are named 'products', 'audits', and 'users'. 
 
+A collection is like a table in SQL and a document is like a row in an SQL table.
 
-### Products collection schema
+### 'products' collection schema
 
-The "product" collection stores product documents in JSON format. Each product document has a unique object ID that is autimatically created each time you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" field for a product is either "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
-{
-"_id": ObjectId,
-"productName": String,
-"price": Double,
-"tags": Array,
-"category": String
-"img": String,
-description: String,
-timeStamp: String
+{  
+"_id": ObjectId,  
+"productName": String,  
+"price": Double,  
+"tags": Array,  
+"category": String,  
+"img": String,  
+"description": String,   
 }
 
+The 'products' collection stores product documents in JSON format. Each product document has a unique object ID that is automatically inserted each time you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" field for a product can be "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
 
-### Users collection schema
+Below is an example of a document in the 'products' collection. A collection is a list of 'product' documents.
 
-The required fields are "Fname", "Lname", "username", and "password".
-
-{ "_id": ObjectId,"fname": String,
-“lName": String,
-"email": String,
-"addy": String,
-"state": String,
-"country": String,
-"username": String,
-"password": String,
-"isAdmin": boolean
-
-"Cart": [
-{
-"id_": ObjectId,
-"productName" : String,
-"quantity": Integer
-}]
+{   
+"_id": ObjectId(849jkhsu4799o598),    
+"productName": "Fancy Bowtie",    
+"price": 23.44,    
+"tags": [Expensive, Cool],    
+"category": "Both",    
+"img": "https://www.ties.com/assets/img/how-to-tie-a-tie/thumbs/bow-tie-knot.jpg",    
+"description": "A fancy bowtie"      
 }
 
+### 'users' collection schema
 
-### Audit collection schema
-{
-"id_": ObjectId,
-"productName": String,
-"adminName": String,
-"action": String
-"timeStamp": String
+{  
+"_id": ObjectId,   
+"firstName": String,  
+“lastName": String,   
+"email": String,    
+"addy": String,  
+"state": String,  
+"country": String,  
+"username": String,  
+"password": String,  
+"isAdmin": boolean  
+
+"Cart": [{
+"id_": ObjectId,  
+"productName" : String,  
+"quantity": Integer  
+}]  
+}
+
+MongoDB is a flexible database, so you can insert a 'user' document without identifying each field. However, we have code in our application that ensures new users enter their first name, last name, username, and password. 
+
+### 'audits' collection schema
+{  
+"id_": ObjectId,  
+"productName": String,  
+"adminName": String,  
+"action": String  
+"timeStamp": String  
 }
 
 The action field has the string value "Added product" or "Deleted product". The timestamp string is the javascript Date object stringifyed.
-
 
 ## database.js
 
@@ -96,54 +107,123 @@ The database file contains code to connect our Node.js application to MongoDB.
 ```
 const mongoose = require("mongoose");
 ```
-we use mongoose, an Object Data Modeling Library, to query data in our database.
+We use mongoose, an Object Data Modeling Library, to query data in our database.
 
-The mongoose.connect() function has a uri string paramater. The uri string for our database is located in our '.env' file. 
+```
+
+const connectDb = async () => {
+    try {
+        await mongoose.connect(uri);
+        console.log("Successfully connected to mongoDB")
+
+    }
+    catch (error) {
+        console.log("Error connecting to mongoDB: ", error.message);
+    }
+}
+```
+
+The mongoose.connect() function has a uri string paramater. The uri string for our database is located in our '.env' file.  
+
+## Models  
+The `models/` directory contains the product, user, and audit `.js` files with their corresponding schemas. We create models for each schema to define data validation rules and enable easy querying of data in MongoDB.
+
+We use the mongoose.schema() function to create a 'new' object that contains the same fields and datatypes as our product collection in MongoDB. 
+
+```
+const productSchema = new mongoose.Schema({productName: String, ...,price: Number});
+```
+We then use the mongoose.model() function to create a model of the schema. 
+
+The first argument of the 'model' function is the name of the schema you created. This argument refers to the capitalized, singular name of the collection name in our database. We use 'Product' as the first argument to refer to our 'products' collection.
+
+The second argument is the variable containing the schema.
+
+```
+const Product = mongoose.model(Product, productSchema);
+```
+
+The user and audit javscript files have the same structure as this 'products' file. 
 
 ## Controllers
-The 'productController' and 'userController' javascript files are located in the `contollers/` directory. The 'productController' contain functions to add, delete, and fetch products. The 'userController' contains functions to add users and find users in our database.
+The 'productController' and 'userController' javascript files are located in the `contollers/` directory. The 'productController' contains functions to add, delete, and fetch products in our 'products' and 'audits' collections. The 'userController' contains functions to add and find users in our 'users' collection.
+
 ### Product Controller
 
-Once we import the Product model to this file, we use the mongoose.find() and mongose.exists() to query products.
+Once we import the Product model to this file, we use mongoose.find() and mongose.exists() to query products.  
 
-The async function 'fetchProducts' has no paramaters and returns an array contaning 'Product' class instances.
+Model.find() returns a query object. If we pass no paramaters to the function, we get an array of all JSON documents from that 'Model'.
 
+Model.exists() returns a document with its _id if at least one document exists with the parameters passed in. The function returns null otherwise.
+
+Our code with the above functions start in the '**fetchProducts()**' section. 
+
+**fetchProducts()**  
+
+The async 'fetchProducts()' function has no paramaters and returns a promise of an array containing 'Product' class instances. 
+
+Below is the first main line of code used in the 'fetchProducts()' function: 
 ```
 const productList = await Product.find();
 ```
-In the 'fetchProducts' function, we use mongoose.find() to retrieve a JSON array contanining all documents from MongoDB that match the sturcture defined by the Product model.
+We use mongoose.find() to retrieve a JSON array contanining all documents from MongoDB that match the sturcture defined by the Product model.
 
-We iterate through the 'productList' array and convert each JSON object into instances of our javascript 'Product' class. 
+### ℹ️ Mongoose queries are not native javascript promises. We use them with 'await' to pause execution until the query is completed. 
 
-The async 'addProduct' function accepts the name, price, tags, category, img, and description as parameters.
+We then iterate through the 'productList' array and convert each JSON document into instances of our javascript 'Product' class.  
+
+**Remember** the async 'fetchProducts()' function returns a promise. So when we use that function in the directory **`routes/adminPage`**, we use the 'await' keyword to wait for the promise. 
+```
+// render admin page
+   router.get('/', async function(req,res,next) {
+    try {
+    /* `productFunctions` is the object with the 'fetchProducts()', 'addProducts()', & other functions in 'productController.js' */
+    productObjects = await productFunctions.fetchProducts();
+    res.render('pages/adminPage', {
+      title: 'Admin Dashboard',
+      products: productObjects
+    });
+    } catch (error) {
+      ...
+  });
+```
+This structure is mimicked each time we use the functions in our 'userController' or 'productController' `.js` files.  
+
+**addProduct()**
+
+The async 'addProduct()' function accepts the name, price, tags, category, img, and description as parameters.
 
 ```
 const prod = await Product.exists({productName: _name});
 ```
-In the 'addProduct' function, we use mongoose.exists() to check if a product with the given name exists,returning a boolean result. If the product does not exist, we create a new product instance using the 'new' keyword and pass all fields from the parameter to the constructor. The timestamp field for the new product is set to a javascript 'Date' object.
-
+We use mongoose.exists() to check if a product with the given name exists. If the product does not exist, we create a new product instance using the 'new' keyword and pass all fields from the parameter to the constructor. 
 
 ```
 const newProd = new Product({productName : _name, ...,
-timeStamp: (new Date().toString())});
+description: _description);
 ```
 
 To save the product to our database, we use the mongoose.save() function. 
 
 ```
-newProd.save();
+await newProd.save();
 ```
+**auditProducts() & addAudit()**  
 
-The async `auditProducts' function is similiar to the 'fetchProduct' function. The only difference is that we use mongoose.find() on our 'Audit' model. The function returns an array of instances of our 'AuditClass'. 
+The async 'auditProducts' function is similiar to the 'fetchProduct' function. The only difference is that we use mongoose.find() on our 'Audit' model. The function returns an array of instances of our 'AuditClass'. 
 
 ```
 const productList = await Audit.find();
 ```
 
-The async 'addAudit' function accepts the name, admin name, and action paramaters. 
+The async 'addAudit' function accepts the name, admin name, and action paramaters. The 'addAudit()' adds a product to our 'audits' collection while the 'addProduct()' adds a product to our 'products' collection.
+
+[More examples of Mongoose querying and documentation](https://mongoosejs.com/docs/queries.html)
 
 ### User Controller
-The async 'addUser' function accepts the fstName, lstName, email, address, country, state, username, and password parameters. Inside the function, we initialize an 'isAdmin' variable to false. The function is similar to 'addProducts' in the 'productsController' file. 
+
+**addUser()**
+The async 'addUser()' function accepts the fstName, lstName, email, address, country, state, username, and password parameters. Inside the function, we initialize an 'isAdmin' variable to false. The function is similar to 'addProducts()' in the 'productsController' file. 
 
 In the async 'findUser' function we use mongoose.find() to return an array of queried user documents.
 
@@ -154,30 +234,9 @@ const user = ret[0];
 
 We then return an object of the form : 
 ``` 
-{userInfo: user, pw: true};
+{userInfo: user, access: true};
 ```
-If the userename and paswword combination was found we pw is set to true, otherwise it is false.
-
-## Models  
-The `models/` directory contains the product, user, and audit javascript files with their corresponding schemas. 
-
-We use the mongoose.schema() function to create a 'new' object that contains the same fields and datatypes as our product collection in MongoDB. 
-
-```
-const productSchema = new mongoose.Schema({productName: String, ...,price: Number});
-```
-We then use the mongoose.model() function to create a model of the schema. 
-
-The first argument of the 'model' function is the name of the schema you created. This argument refers to the capitalized, plural name of the 'products' collection name in our database.
-
-The second argument is the variable containing the schema.
-
-```
-const Product = mongoose.model(Product, productSchema);
-```
-
-The user and audit javscript files have the same structure as this 'products' file. 
-
+If the username and paswword combination was found, 'access' is set to true, otherwise it is false.
 
 ## Development
 ### Pages and Routes
@@ -195,12 +254,77 @@ module.exports = router;
 ```
 Example of a `index.js` file that is rendering the index page using the routes.
 
+ # `.ejs` files 
+- about.ejs  
+- addProduct.ejs  
+    includes the form admin users submit to add a new product.
+- adminPage.ejs  
+    Includes hyperlinks to `audit.ejs` and `addProduct.ejs`. This page contains a grid of all available products with corresponding delete buttons.
+- audit.ejs  
+   Includes the audit table for all products.
+- login.ejs/signup.ejs  
+    This page includes the form users can submit to create/login to their account
+- products.ejs     
+   This page contains a grid of available products and code to filter 
+   products by tags.
+- shoppingCart.ejs:  
 
+  
 ### Partials 
 The navigationBar and copyright `.ejs` files are made in the `views/partials/` directory.
 
 ### Styles
 The style `.ccs` file is in `public/stylesheets/` directory. 
+
+
+## Unit Testing
+### Overview
+Our unit testing is performed with a combination of `jest` and `mongoose-memory-server` as well as github's Node.js Continuous integration workflow.
+
+### Packages and Dependencies
+Our testing framework requires the installation of several packages. In the top level project directory, you need to  `npm install` the following packages: `jest`, `jest-jasmine2`.
+In the pet_website_app folder, you need to `npm install` the following packages: `mongodb-memory-server`.
+
+### Configuration
+There a few files that need to exist or be created in order for the current testing workflow to run.
+
+In the top level directory, there needs to be a `jest.config.js` file with the following contents. This file allows for the done() function to work in `UnitTest.test.js`.
+```
+module.exports = {
+    testRunner: 'jest-jasmine2',
+    setupFilesAfterEnv: ['./jest.setup.js']
+};
+```
+
+Additionally, the following code needs to be present in a `jest.setup.js` file in your top level directory. This increases the timeout period for all tests. This timeout period increase is necessary for github's virtual machines to finish all of the tests.
+```
+jest.setTimeout(30000);
+```
+
+The following configurations need to be included `package.json` in the top level directory. These are used to control the `npm start`, `npm ci`, and `npm test` commands used for testing.
+```
+"scripts": {
+    "start": "cd pet_website_app && npm start",
+    "ci": "cd pet_website_app && npm ci",
+    "test": "jest --detectOpenHandles --forceExit"
+  },
+```
+
+### Writing Unit Testing Code
+All unit testing code is stored within `pet_website_app/UnitTests.jest.js`. If you would like to write more unit tests, add them to `pet_website_app/UnitTests.jest.js` or place them in a new file with the `.test.js` extension in any directory.
+
+Jest runs test by running the `test` functions. The `test` function takes two arguments: a string representing the name of the test and a function that the test exectutes. The function should list `done` as an argument. Inside the test function will be several calls to `expect` followed by a call to `toBe`. Pass in an expression that you want to test to `expect`, then call `toBe` and pass in the expected value.
+
+There are some additional functions in `UnitTests.jest.js` whose functionality is explained in the comments.
+
+All tests that interact with our database use an in memory version of a mongodb database. Therefore, our actual database is not accessed or modified during testing.
+
+### Running Unit Tests and Github Integration
+To run unit tests, execute `npm test` in the top level directory or in the `pet_website_app` folder. All tests will run and jest will tell you which of these tests passed and which failed. If the test fails, jest will indicate which call to `expect` and `toBe` failed as well as showing the expected and actual output.
+
+Unit tests will also be run anytime a push or pull request is made on any branch. To check if your tests passed, navigate to the actions tab of github and look for the action with the name of your last pushed commit. The Node.js CI workflow is found in the `github/workflows/node.js.yml` file. More information about the steps of the workflow can be found in comments in that file.
+
+
 
 ## User Manual
 
@@ -244,6 +368,7 @@ will be indicated in the form.
 
 On the same page if you click the audit button you will be guided to the audit table. Which 
 indicates data about the admin and items. 
+
 
 <img width="933" alt="Screenshot 2024-04-16 at 6 08 06 PM" src="https://github.com/Bortiz25/pet-store-website/assets/99363092/9b04d2c6-7734-498d-b746-07d81b08ff8e">
 

@@ -2,9 +2,10 @@
   "scripts": {
     "start": "cd pet_website_app && npm start",
     "ci": "cd pet_website_app && npm ci",
-    "test": "jest"
+    "test": "jest --detectOpenHandles --forceExit"
   },
   "dependencies": {
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "jest-jasmine2": "^29.7.0"
   }
 }
