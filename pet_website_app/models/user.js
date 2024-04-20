@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     userName: String,
     password: String,
     isAdmin: Boolean,
+    cart: Array
 });
 
 //user class code 
@@ -26,9 +27,10 @@ class UserClass {
         this.userName = userName;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.cart = cart;
     }
 
-    
+    getCart() {}
     display() {}
     getUserName(){}
     getAddress(){}

@@ -58,8 +58,9 @@ async function addProduct(_name,_price,_tags,_category,_img,_description) {
   }
 }
 
-async function addToCart(_name, _username) {
-  
+async function addToCart(username, prodName) {
+  const prod = await Product.findOne({productName: prodName});
+  await User.updateOne({ userName : username }, { $push: { cart : prod } });
 }
 
 async function addAudit(_name,_admin,_action) {
@@ -88,4 +89,4 @@ async function deleteProduct(_name) {
 }
 
 
-module.exports = {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct}; 
+module.exports = {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct, addToCart}; 
