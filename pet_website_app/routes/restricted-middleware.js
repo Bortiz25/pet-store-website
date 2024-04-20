@@ -10,7 +10,7 @@ const adminMiddleware = (req, res, next) => {
 // const loginMiddleware = (req, res, next) => {
 //     console.log('comeplete user session', req.session);
 //     if(req.session && req.session.user){
-//         next()
+        
 //     }else {
 //         req.status(401).json({message: 'Page not available unless you are an admin. '});
 //     }
