@@ -70,4 +70,20 @@ router.post('/', async (req, res) => {
   } catch(error){console.error("Error filtering products")}
 })
 
+router.post('/:productId', async (req,res,next)=> {
+  try {
+    if(req.session.user==undefined) { //if user is not logged in
+
+    }
+    else { //if user is logged in
+      let user = req.session.user.username;
+      let prod = req.params.productId;
+      productFunctions.addToCart(user, prod);
+    }
+    res.redirect('/pages/products');
+  } catch (error){
+    console.log("Error adding product to cart", error);
+  }
+});
+
 module.exports = router;

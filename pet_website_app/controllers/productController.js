@@ -63,6 +63,11 @@ async function addToCart(username, prodName) {
   await User.updateOne({ userName : username }, { $push: { cart : prod } });
 }
 
+async function removeFromCart(username, prodName) {
+  const prod = await Product.findOne({productName: prodName});
+  await User.updateOne({ userName : username }, { $pull: { cart : prod } });
+}
+
 async function addAudit(_name,_admin,_action) {
   try {
     const prod = new Audit({productName : _name,
@@ -89,4 +94,4 @@ async function deleteProduct(_name) {
 }
 
 
-module.exports = {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct, addToCart}; 
+module.exports = {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct, addToCart, removeFromCart}; 

@@ -72,7 +72,7 @@
             <h3>$<%= products[i].price %></h3>
             <body><%= products[i].description %></body>
             <h3></h3>
-            <form action="/pages/shoppingCart/<%= encodeURIComponent(products[i].productName) %>" method="post">
+            <form action="/pages/products/<%= encodeURIComponent(products[i].productName) %>" method="post">
               <button type="submit">Add to cart</button>
             </form>
           </div>
@@ -84,7 +84,7 @@
               <h3>$<%= products[i].price %></h3>
               <body><%= products[i].description %></body>
               <h3></h3>
-              <form action="/pages/shoppingCart/<%= encodeURIComponent(products[i].productName) %>" method="post">
+              <form action="/pages/products/<%= encodeURIComponent(products[i].productName) %>" method="post">
                 <button type="submit">Add to cart</button>
               </form>
             </div>
@@ -97,7 +97,7 @@
               <h3>$<%= products[i].price %></h3>
               <body><%= products[i].description %></body>
               <h3></h3>
-              <form action="/pages/shoppingCart/<%= encodeURIComponent(products[i].productName) %>" method="post">
+              <form action="/pages/products/<%= encodeURIComponent(products[i].productName) %>" method="post">
                 <button type="submit">Add to cart</button>
               </form>
             </div>

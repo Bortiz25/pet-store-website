@@ -22,14 +22,13 @@ router.get('/', async function(req, res, next) {
 router.post('/:productId', async (req,res,next)=> {
   try {
     if(req.session.user==undefined) { //if user is not logged in
-
     }
     else { //if user is logged in
       let user = req.session.user.username;
       let prod = req.params.productId;
-      productFunctions.addToCart(user, prod);
+      productFunctions.removeFromCart(user, prod);
     }
-    res.redirect('/pages/products');
+    res.render('/pages/shoppingCart');
   } catch (error){
     console.log("Error adding product to cart", error);
   }
