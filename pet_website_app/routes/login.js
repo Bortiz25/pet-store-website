@@ -15,6 +15,9 @@ router.post('/', async (req, res) => {
         await User.findOne({userName:username, password: password}).then((user) => {
             req.session.user = {
                 username: user.userName,
+                lastName: user.lastName,
+                address: user.address,
+                state: user.state,
                 name: user.firstName,
                 isAdmin: user.isAdmin,
             }
