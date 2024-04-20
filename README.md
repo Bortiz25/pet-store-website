@@ -123,72 +123,7 @@ const connectDb = async () => {
 }
 ```
 
-The mongoose.connect() function has a uri string paramater. The uri string for our database is located in our '.env' file. 
-
-## Controllers
-The 'productController' and 'userController' javascript files are located in the `contollers/` directory. The 'productController' contains functions to add, delete, and fetch products in our 'products' and 'audits' collections. The 'userController' contains functions to add and find users in our 'users' collection.
-
-### Product Controller
-
-Once we import the Product model to this file, we use mongoose.find() and mongose.exists() to query products.
-
-**fetchProducts()**  
-
-The async function 'fetchProducts' has no paramaters and returns an array containing 'Product' class instances.
-
-```
-const productList = await Product.find();
-```
-In the 'fetchProducts()' function, we use mongoose.find() to retrieve a JSON array contanining all documents from MongoDB that match the sturcture defined by the Product model.
-
-We then iterate through the 'productList' array and convert each JSON object into instances of our javascript 'Product' class. 
-
-**addProduct()**
-
-The async 'addProduct()' function accepts the name, price, tags, category, img, and description as parameters.
-
-```
-const prod = await Product.exists({productName: _name});
-```
-We use mongoose.exists() to check if a product with the given name exists, returning a boolean result. If the product does not exist, we create a new product instance using the 'new' keyword and pass all fields from the parameter to the constructor. 
-
-```
-const newProd = new Product({productName : _name, ...,
-description: _description);
-```
-
-To save the product to our database, we use the mongoose.save() function. 
-
-```
-await newProd.save();
-```
-**auditProducts() & addAudit()**  
-
-The async 'auditProducts' function is similiar to the 'fetchProduct' function. The only difference is that we use mongoose.find() on our 'Audit' model. The function returns an array of instances of our 'AuditClass'. 
-
-```
-const productList = await Audit.find();
-```
-
-The async 'addAudit' function accepts the name, admin name, and action paramaters. The 'addAudit()' adds a product to our 'audits' collection while the 'addProduct()' adds a product to our 'products' collection.
-
-### User Controller
-
-**addUser()**
-The async 'addUser()' function accepts the fstName, lstName, email, address, country, state, username, and password parameters. Inside the function, we initialize an 'isAdmin' variable to false. The function is similar to 'addProducts()' in the 'productsController' file. 
-
-In the async 'findUser' function we use mongoose.find() to return an array of queried user documents.
-
-```
-const ret = await User.find({userName: username, password: pw});
-const user = ret[0];
-```
-
-We then return an object of the form : 
-``` 
-{userInfo: user, access: true};
-```
-If the username and paswword combination was found, 'access' is set to true, otherwise it is false.
+The mongoose.connect() function has a uri string paramater. The uri string for our database is located in our '.env' file.  
 
 ## Models  
 The `models/` directory contains the product, user, and audit `.js` files with their corresponding schemas. We create models for each schema to define data validation rules and enable easy querying of data in MongoDB.
@@ -210,6 +145,98 @@ const Product = mongoose.model(Product, productSchema);
 
 The user and audit javscript files have the same structure as this 'products' file. 
 
+## Controllers
+The 'productController' and 'userController' javascript files are located in the `contollers/` directory. The 'productController' contains functions to add, delete, and fetch products in our 'products' and 'audits' collections. The 'userController' contains functions to add and find users in our 'users' collection.
+
+### Product Controller
+
+Once we import the Product model to this file, we use mongoose.find() and mongose.exists() to query products.  
+
+Model.find() returns a query object. If we pass no paramaters to the function, we get an array of all JSON documents from that 'Model'.
+
+Model.exists() returns a document with its _id if at least one document exists with the parameters passed in. The function returns null otherwise.
+
+Our code with the above functions start in the '**fetchProducts()**' section. 
+
+**fetchProducts()**  
+
+The async 'fetchProducts()' function has no paramaters and returns a promise of an array containing 'Product' class instances. 
+
+Below is the first main line of code used in the 'fetchProducts()' function: 
+```
+const productList = await Product.find();
+```
+We use mongoose.find() to retrieve a JSON array contanining all documents from MongoDB that match the sturcture defined by the Product model.
+
+> **Note:** Mongoose queries are not native javascript promises. We use them with 'await' to pause execution until the query is completed. 
+
+We then iterate through the 'productList' array and convert each JSON document into instances of our javascript 'Product' class.  
+
+**Remember** the async 'fetchProducts()' function returns a promise. So when we use that function in the directory **`routes/adminPage`**, we use the 'await' keyword to wait for the promise. 
+```
+// render admin page
+   router.get('/', async function(req,res,next) {
+    try {
+    /* `productFunctions` is the object with the 'fetchProducts()', 'addProducts()', & other functions in 'productController.js' */
+    productObjects = await productFunctions.fetchProducts();
+    res.render('pages/adminPage', {
+      title: 'Admin Dashboard',
+      products: productObjects
+    });
+    } catch (error) {
+      ...
+  });
+```
+This structure is mimicked each time we use the functions in our 'userController' or 'productController' `.js` files.  
+
+**addProduct()**
+
+The async 'addProduct()' function accepts the name, price, tags, category, img, and description as parameters.
+
+```
+const prod = await Product.exists({productName: _name});
+```
+We use mongoose.exists() to check if a product with the given name exists. If the product does not exist, we create a new product instance using the 'new' keyword and pass all fields from the parameter to the constructor. 
+
+```
+const newProd = new Product({productName : _name, ...,
+description: _description);
+```
+
+To save the product to our database, we use the mongoose.save() function. 
+
+```
+await newProd.save();
+```
+**auditProducts() & addAudit()**  
+
+The async 'auditProducts' function is similiar to the 'fetchProduct' function. The only difference is that we use mongoose.find() on our 'Audit' model. The function returns an array of instances of our 'AuditClass'. 
+
+```
+const productList = await Audit.find();
+```
+
+The async 'addAudit' function accepts the name, admin name, and action paramaters. The 'addAudit()' adds a product to our 'audits' collection while the 'addProduct()' adds a product to our 'products' collection.
+
+[More examples of Mongoose querying and documentation](https://mongoosejs.com/docs/queries.html)
+
+### User Controller
+
+**addUser()**
+The async 'addUser()' function accepts the fstName, lstName, email, address, country, state, username, and password parameters. Inside the function, we initialize an 'isAdmin' variable to false. The function is similar to 'addProducts()' in the 'productsController' file. 
+
+In the async 'findUser' function we use mongoose.find() to return an array of queried user documents.
+
+```
+const ret = await User.find({userName: username, password: pw});
+const user = ret[0];
+```
+
+We then return an object of the form : 
+``` 
+{userInfo: user, access: true};
+```
+If the username and paswword combination was found, 'access' is set to true, otherwise it is false.
 
 ## Development
 ### Pages and Routes
