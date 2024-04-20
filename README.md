@@ -168,7 +168,7 @@ const productList = await Product.find();
 ```
 We use mongoose.find() to retrieve a JSON array contanining all documents from MongoDB that match the sturcture defined by the Product model.
 
-### Mongoose queries are not native javascript promises. We use them with 'await' to pause execution until the query is completed. 
+### ℹ️ Mongoose queries are not native javascript promises. We use them with 'await' to pause execution until the query is completed. 
 
 We then iterate through the 'productList' array and convert each JSON document into instances of our javascript 'Product' class.  
 
