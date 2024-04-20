@@ -1,5 +1,6 @@
 const {Product, ProductClass} = require ('../models/product');
 const {Audit, AuditClass} = require ('../models/audit');
+const {User, UserClass} = require ('../models/user');
 
 async function auditProducts() {
     try {
@@ -55,6 +56,10 @@ async function addProduct(_name,_price,_tags,_category,_img,_description) {
   } else {
     return false;
   }
+}
+
+async function addToCart(_name, _username) {
+  
 }
 
 async function addAudit(_name,_admin,_action) {
