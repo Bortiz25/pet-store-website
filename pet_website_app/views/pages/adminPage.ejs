@@ -22,11 +22,9 @@
             <img src=<%= products[i].img %> style="width:100%;height:auto;">
             <h2><%= products[i].productName %></h2>
             <body><%= products[i].description %></body>
-            <form id="deleteForm" action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post" 
-              onsubmit="return confirm('Are you sure you want to delete the product: <%= (products[i].productName) %>?');">
-               <button type="submit">Delete Product</button>
-             </form>
-
+            <form action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post">
+                  <button type="submit">Delete Product</button>
+                </form>
           </div>
           <script>i++;</script>
           <%i++%>
@@ -36,10 +34,9 @@
               <h2><%= products[i].productName %></h2>
               <body><%= products[i].description %></body>
               <h3></h3>
-              <form id="deleteForm" action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post" 
-              onsubmit="return confirm('Are you sure you want to delete the product: <%= (products[i].productName) %> ?');">
-               <button type="submit">Delete Product</button>
-               </form>
+              <form action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post">
+                  <button type="submit">Delete Product</button>
+                </form>
             </div>
           <%}%>
           <script>i++;</script>
@@ -50,10 +47,9 @@
               <h2><%= products[i].productName %></h2>
               <body><%= products[i].description %></body>
               <h3></h3>
-              <form id="deleteForm" action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post" 
-              onsubmit="return confirm('Are you sure you want to delete the product: <%= (products[i].productName) %> ?');">
-               <button type="submit">Delete Product</button>
-               </form>
+              <form action="/pages/adminPage/<%= encodeURIComponent(products[i].productName) %>" method="post">
+                  <button type="submit">Delete Product</button>
+                </form>
             </div>
           <%}%>
         </div>

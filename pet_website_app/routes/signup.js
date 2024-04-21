@@ -5,8 +5,7 @@ const userFunctions = require ('../controllers/userController');
 
 
  router.post('/', async (req, res, next ) => {
-    // returns boolean 'true' if account was added to database  
-    const addedUser = await userFunctions.addUser(req.body.fname,
+    await userFunctions.addUser(req.body.fname,
              req.body.lname,
              req.body.email,
              req.body.address,
@@ -14,21 +13,8 @@ const userFunctions = require ('../controllers/userController');
              req.body.country,
              req.body.username,
              req.body.password);
-        
-        if(addedUser){
-            // user infromation was added to database. Ahow alert then redirect to log in page
-            res.send(
-                '<script> alert("Your account was created!"); </script>'+
-                '<script> window.location.href = "/pages/login"; </script>'
-                );
-               
-        } else {
-            res.send(
-                '<script> alert("This username already exists. Please enter a different username"); </script>'+
-                '<script> window.location.href = "/pages/signup"; </script>'
-                );
-        }
 
+         res.render('pages/login', {title: 'Sign In'});
      });
 
 router.get('/', function(req, res, next){

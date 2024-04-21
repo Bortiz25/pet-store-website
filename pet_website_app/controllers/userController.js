@@ -3,10 +3,9 @@ const {User, UserClass} = require ('../models/user');
 
 async function addUser(fstName, lstName, email, address, country, state,
     username, pw) {
-    // Queries the database to see if the username is already taken 
+    // Queries the database to see if there is already a product with the same name
     doesExist = await User.exists({userName: username});
     if(!doesExist){
-        // Our one admin user already exists in our 'users' collection in MongoDB
         let isAdmin = "false";
         const newUser = new User({
             firstName: fstName,
@@ -17,32 +16,30 @@ async function addUser(fstName, lstName, email, address, country, state,
             country: country,
             userName: username,
             password: pw,
-            isAdmin: isAdmin
+            isAdmin: isAdmin,
+            cart: []
         });
-        await newUser.save();
-        return true;
-    } else {
-        return false;
+        newUser.save();
     }
   }
 
   async function findUser(username, pw) {
     try {
-        // Queries the database to see if there is already a product with the same name
-        const ret = await User.find({userName: username, password: pw});
-        // mongoose.find() returns an array of documents 
-        const user = ret[0];
-        // username exists and password is correct 
-        if(ret.length != 0)  {
-            return {userInfo: user, access: true};
-        }
-        // username and/or pw is incorrect 
-        else {
-            return {userInfo: user, access: false};
-        }
-    } catch (error) {
-        console.log("Error fetching user from 'users' collection: ", error);
+    // Queries the database to see if there is already a product with the same name
+    const ret = await User.find({userName: username, password: pw});
+    const user = ret[0];
+     //username exists and password is correct 
+    if(ret.length != 0)  {
+        return {userInfo: user, pw: true};
+    }
+     //username or pw is incorrect 
+    else {
+        return {userInfo: user, pw: false};
+    }
+    } catch (errr) {
+        console.log("Error getting user from database", error);
     }
   }
-// export an object containing the below functions 
+
+
 module.exports = {addUser, findUser}; 

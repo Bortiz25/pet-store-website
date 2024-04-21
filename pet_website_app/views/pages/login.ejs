@@ -6,7 +6,6 @@
 </head>
 <body>
 <h1><%=title%></h1>
-
 <form action="/pages/login" method="post" style="padding-left: 15px;">
   <label for="username">Username:</label><br>
   <input type="text" id="username" name="username" required><br>
@@ -17,4 +16,5 @@
 <br>
 <a href="/pages/signup" style="padding-left: 15px;">Not a user? Create an account</a>
 </body>
+<%- include('../partials/copyright') %>
 </html> 
