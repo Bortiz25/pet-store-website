@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/navigationBar') %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="row" style="padding-top: 45px;">
+      <div class="column50" style="text-align:center">
+        <img src = "https://www.burgesspetcare.com/wp-content/uploads/2024/01/shutterstock_1189520911-scaled-1.jpg" style="width:90%;height:auto;";>
+      </div>
+      <div class="column50">
+        <h2 style="text-align:center">
+          Shop deals by pet
+        </h2>
+        <form action="/pages/products" method="POST">
+          <div class="column50" style="text-align:center;">
+            <button name="animal" type="submit" value="Bird" style="border: none; border-radius: 50%; width:80%">
+              <img src="https://lafeber.com/pet-birds/wp-content/uploads/2018/06/Lovebird.jpg" style="border-radius: 50%; width:100%;">
+            </button>
+            <br>
+            <h3>Birds</h3>
+          </div>
+          <div class="column50" style="text-align:center">
+            <button name="animal" type="submit" value="Ferret" style="border: none; border-radius: 50%; width:80%">
+              <img id="Ferrets" src="https://www.wysong.net/cdn/shop/collections/18.jpg?v=1656082020&width=750" style="border-radius: 50%; width:100%">
+            </button>
+            <br>
+            <h3>Ferrets</h3>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <%- include('./partials/copyright') %>
+</html>

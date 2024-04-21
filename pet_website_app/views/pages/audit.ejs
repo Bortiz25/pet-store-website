@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/navigationBar') %>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1><%=title%></h1>
+    <table class="table">
+        <tr>
+            <th class="th">Product name</th>
+            <th class="th">Admin name</th>
+            <th class="th">Action</th>
+            <th class="th">TimeStamp</th>
+          </tr>
+          <% for(i=0;i<products.length;i++) {%>
+            <tr> 
+                <td class="td"><%= products[i].productName %></td>
+                <td class="td"><%= products[i].adminName %></</td>
+                <td class="td"><%= products[i].action %></</td>
+                <td class="td"><%= products[i].timeStamp %></</td>
+            </tr>
+        <script>i++;</script>
+        <%}%>
+    </table>
+</body>
+<%- include('../partials/copyright') %>
+</html>

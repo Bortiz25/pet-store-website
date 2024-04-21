@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('../partials/navigationBar') %>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><%=title%></h1>
+<form action="/pages/login" method="post" style="padding-left: 15px;">
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username" required><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password" required><br><br>
+  <button type="submit">Log In</button>
+</form> 
+<br>
+<a href="/pages/signup" style="padding-left: 15px;">Not a user? Create an account</a>
+</body>
+<%- include('../partials/copyright') %>
+</html> 
