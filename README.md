@@ -52,8 +52,8 @@ Once you click on the 'Browse collections' tab, you can see our 'audits', 'produ
 In the case that you manually add in data, make sure to follow our data validation rules. 
 Strings in the catrgory array must be lowercase. Also, the first letter of the value for the "category" field must be capitalized. 
 
-# Important Note
-A collection is like a table in SQL and a document is like a row in an SQL table.
+
+### ℹ️ A collection is like a table in SQL and a document is like a row in an SQL table.
 
 ### 'products' collection schema
 
