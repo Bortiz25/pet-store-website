@@ -3,7 +3,7 @@
 
 - [Setup](#setup)
 - [Database access](#mongoDB)
-- [Database.js](#database.js)
+- [Database connection](#databasejs)
 - [Models](#models)
 - [Controllers](#controllers)
 - [Development](#development)
@@ -120,7 +120,7 @@ Whenever we add or delete a product from the 'products' collection, we also add 
 our admin Page.
 ## database.js
 
-The database file contains code to connect our Node.js application to MongoDB.
+The database file contains code to connect our Node.js application to MongoDB. 
 
 ```
 const mongoose = require("mongoose");
@@ -141,7 +141,8 @@ const connectDb = async () => {
 }
 ```
 
-The mongoose.connect() function has a uri string paramater. The uri string for our database is located in our '.env' file.  
+The mongoose.connect() function has a uri string paramater. The uri string for our database is located in our '.env' file. If you change the username, password, or name of our database, you will have to update the uri string.
+After we connect to our database, we access our collections using 'mongoose.Models()'. 
 
 ## Models  
 The `models/` directory contains the product, user, and audit `.js` files with their corresponding schemas. We create models for each schema to define data validation rules and enable easy querying of data in MongoDB.
@@ -276,7 +277,7 @@ Example of a `index.js` file that is rendering the index page using the routes.
 All of our 'POST' and 'GET' requests are in the `/routes` directory. Below is an example of a POST HTTP request that adds a product to our database when a form is submitted. 
 The following code is in `routes\addProduct`.
 
-**Note:** The 'productsFunction' is and object with methods 'addProduct(...)' and 'addAudit(productName, adminName, action)'
+> Note: The 'productsFunction' is and object with methods "addProduct(<parameters>)" and "addAudit( productName , adminName , action )"
 
 ```
 // route to add product when admin submits 'addProduct.ejs' form
