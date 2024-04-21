@@ -2,17 +2,17 @@ const express = require('express');
 const router = express.Router();
 const productFunctions = require ('../controllers/productController');
 
-    // route to delete product when the 'delete' button is clicked on adminPage
+    //route to delete product 
     router.post('/:productId', async (req,res,next)=> {
     try { 
      await productFunctions.deleteProduct(req.params.productId);
-     await productFunctions.addAudit(req.params.productId, req.session.user.name, "Deleted product");
+     await productFunctions.addAudit(req.params.productId, "Seth", "Deleted product");
     res.redirect('/pages/adminPage');
-    } catch (error){
-        console.log("Error deleting product: ", error);
+    } catch (err){
+        console.log("Error deleting product", error);
     }
     });
-   // render admin page
+
    router.get('/', async function(req,res,next) {
     try {
     productObjects = await productFunctions.fetchProducts();
