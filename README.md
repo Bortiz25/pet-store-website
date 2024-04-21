@@ -47,13 +47,13 @@ You should now be on the 'Overview' page shown below:
 
 Once you click on the 'Browse collections' tab, you can see our 'audits', 'products', and 'users' collections.
 
-![Screenshot 2024-04-20 172948](https://github.com/Bortiz25/pet-store-website/assets/94881226/d70c2a62-30f7-42a1-8b1d-2ec9e7edbacc)
+### ℹ️ A collection is like a table in SQL and a document is like a row in an SQL table.
 
-In the case that you manually add in data, make sure to follow our data validation rules. 
+![Screenshot 2024-04-20 201215](https://github.com/Bortiz25/pet-store-website/assets/94881226/a8733644-4e1a-4ad7-ac26-7ff758b4f55f)
+
+In the case that you manually add in data to the 'products' collection, make sure to follow our data validation rules. 
 Strings in the catrgory array must be lowercase. Also, the first letter of the value for the "category" field must be capitalized. 
 
-
-### ℹ️ A collection is like a table in SQL and a document is like a row in an SQL table.
 
 ### 'products' collection schema
 
