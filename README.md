@@ -237,9 +237,12 @@ const productList = await Audit.find();
 
 The async 'addAudit' function accepts the name, admin name, and action paramaters. The 'addAudit()' adds a product to our 'audits' collection while the 'addProduct()' adds a product to our 'products' collection.
 
-[More examples of Mongoose querying and documentation](https://mongoosejs.com/docs/queries.html)
+[More examples of Mongoose querying and documentation](https://mongoosejs.com/docs/queries.html)  
 
-### User Controller
+
+    
+
+### User Controller  
 
 **addUser()**
 The async 'addUser()' function accepts the fstName, lstName, email, address, country, state, username, and password parameters. Inside the function, we initialize an 'isAdmin' variable to false. The function is similar to 'addProducts()' in the 'productsController' file. 
