@@ -65,7 +65,7 @@ Strings in the catrgory array must start with a lowercase letter. Also, the firs
 "tags": Array,  
 "category": String,  
 "img": String,  
-"description": String,   
+"description": String   
 }
 
 The 'products' collection stores product documents in JSON format. Each product document has a unique 'objectID' that is automatically inserted when you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" value for a product can be "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
@@ -97,9 +97,13 @@ Below is an example of a document in the 'products' collection. A collection is 
 "isAdmin": boolean  
 
 "Cart": [{
-"id_": ObjectId,  
-"productName" : String,  
-"quantity": Integer  
+"_id": ObjectId,  
+"productName": String,  
+"price": Double,  
+"tags": Array,  
+"category": String,  
+"img": String,  
+"description": String
 }]  
 }
 
