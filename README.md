@@ -115,8 +115,9 @@ MongoDB is a flexible database, so you can insert a 'user' document without iden
 "timeStamp": String  
 }
 
-The action field has the string value "Added product" or "Deleted product". The timestamp string is the javascript Date object stringifyed.
-
+The action field has the string value "Added product" or "Deleted product". The "timestamp" value is a javascript Date object stringifyed.
+Whenever we add or delete a product from the 'products' collection, we also add the product to the 'audits' collection. This allows us to display the audited data on 
+our admin Page.
 ## database.js
 
 The database file contains code to connect our Node.js application to MongoDB.
@@ -189,7 +190,7 @@ We use mongoose.find() to retrieve a JSON array contanining all documents from M
 
 We then iterate through the 'productList' array and convert each JSON document into instances of our javascript 'Product' class.  
 
-**Remember** the async 'fetchProducts()' function returns a promise. So when we use that function in the directory **`routes/adminPage`**, we use the 'await' keyword to wait for the promise. 
+**Remember** the async 'fetchProducts()' function returns a promise. So when we use that function in the directory **`routes/adminPage`**, we use the 'await' keyword to wait for the promise to resolve. 
 ```
 // render admin page
    router.get('/', async function(req,res,next) {
@@ -270,6 +271,29 @@ router.get('/', function(req, res, next) {
 module.exports = router;
 ```
 Example of a `index.js` file that is rendering the index page using the routes.
+
+
+All of our 'POST' and 'GET' requests are in the `/routes` directory. Below is an example of a POST HTTP request that adds a product to our database when a form is submitted. 
+The following code is in `routes\addProduct`.
+
+**Note:** The 'productsFunction' is and object with methods 'addProduct(...)' and 'addAudit(productName, adminName, action)'
+
+```
+// route to add product when admin submits 'addProduct.ejs' form
+router.post('/', async (req, res, next) => {
+  // add product to our 'products' collection 
+      await productFunctions.addProduct(
+        req.body.name,
+        Number(req.body.price),
+        (req.body.tags),
+        req.body.category,
+        req.body.img,
+        req.body.desc);
+    // also add the product to our 'audits' collection. We will use this collection for our audit table
+    await productFunctions.addAudit(req.body.name, req.session.user.name, "Added product");
+    res.redirect('adminPage');
+  });
+```
 
  # `.ejs` files 
 - about.ejs  
