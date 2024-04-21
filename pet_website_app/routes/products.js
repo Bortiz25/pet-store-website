@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 const productFunctions = require ('../controllers/productController');
+const userFunctions = require ('../controllers/userController');
 
 
 router.get('/', async function(req,res,next) {
@@ -73,14 +74,17 @@ router.post('/', async (req, res) => {
 router.post('/:productId', async (req,res,next)=> {
   try {
     if(req.session.user==undefined) { //if user is not logged in
-
+      res.send(
+        '<script> alert("Please sign in before shopping"); </script>'+
+        '<script> window.location.href = "/pages/login"; </script>'
+      );
     }
     else { //if user is logged in
       let user = req.session.user.username;
       let prod = req.params.productId;
       productFunctions.addToCart(user, prod);
+      res.redirect('/pages/products');
     }
-    res.redirect('/pages/products');
   } catch (error){
     console.log("Error adding product to cart", error);
   }

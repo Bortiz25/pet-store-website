@@ -24,11 +24,17 @@ router.post('/:productId', async (req,res,next)=> {
     if(req.session.user==undefined) { //if user is not logged in
     }
     else { //if user is logged in
-      let user = req.session.user.username;
+      let username = req.session.user.username;
       let prod = req.params.productId;
-      productFunctions.removeFromCart(user, prod);
+
+      await productFunctions.removeFromCart(username, prod);
+      const user = await User.findOne( {userName : username} );
+      display = user.cart;
+      res.render('pages/shoppingCart', {
+        title: 'Shopping Cart',
+        products: display
+      });
     }
-    res.render('/pages/shoppingCart');
   } catch (error){
     console.log("Error adding product to cart", error);
   }

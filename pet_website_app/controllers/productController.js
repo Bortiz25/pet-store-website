@@ -60,7 +60,7 @@ async function addProduct(_name,_price,_tags,_category,_img,_description) {
 
 async function addToCart(username, prodName) {
   const prod = await Product.findOne({productName: prodName});
-  await User.updateOne({ userName : username }, { $push: { cart : prod } });
+  await User.updateOne({ userName : username }, { $addToSet: {cart : prod} });
 }
 
 async function removeFromCart(username, prodName) {
@@ -90,7 +90,6 @@ async function deleteProduct(_name) {
  catch (err) {
   console.log("Error deleting product from database ", err);
  }
-
 }
 
 

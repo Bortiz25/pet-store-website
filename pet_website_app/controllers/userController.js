@@ -17,7 +17,7 @@ async function addUser(fstName, lstName, email, address, country, state,
             userName: username,
             password: pw,
             isAdmin: isAdmin,
-            cart: cart
+            cart: []
         });
         newUser.save();
     }

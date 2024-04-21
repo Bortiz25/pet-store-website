@@ -156,6 +156,7 @@ b {
 
 /* collapsible menu */
 .collapsible {
+  font-family: 'ABeeZee';
   background-color: #e4e4e4;
   color: #000000;
   cursor: pointer;
@@ -168,6 +169,7 @@ b {
 }
 
 .content {
+  font-family: 'ABeeZee';
   padding: 0 18px;
   display: none;
   overflow: hidden;

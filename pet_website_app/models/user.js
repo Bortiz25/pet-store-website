@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     password: String,
     isAdmin: Boolean,
     cart: Array
-});
+}, { versionKey: false });
 
 //user class code 
 class UserClass {

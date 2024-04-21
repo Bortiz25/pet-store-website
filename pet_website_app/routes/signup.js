@@ -14,7 +14,7 @@ const userFunctions = require ('../controllers/userController');
              req.body.username,
              req.body.password);
 
-         res.render('pages/login', {title: 'log in'});
+         res.render('pages/login', {title: 'Sign In'});
      });
 
 router.get('/', function(req, res, next){
