@@ -60,7 +60,7 @@ Below is an example of a document in the 'products' collection. A collection is 
 "_id": ObjectId(849jkhsu4799o598),    
 "productName": "Fancy Bowtie",    
 "price": 23.44,    
-"tags": [Expensive, Cool],    
+"tags": [expensive, cool],    
 "category": "Both",    
 "img": "https://www.ties.com/assets/img/how-to-tie-a-tie/thumbs/bow-tie-knot.jpg",    
 "description": "A fancy bowtie"      
