@@ -37,8 +37,8 @@ If this message above does appear in your terminal you are doing something wrong
 ## MongoDB
 ### Database Management
 
-After recieveing an email invitation to join our organization, follow these steps: 
-1. Create a MongoDb account using the provided link
+After recieving an email invitation to join our organization, follow these steps: 
+1. Create a MongoDB account using the provided link
 2. Once your logged in, navigate the the 'Projects' tab located on the left menu bar
 3. Select the 'Pet Website Project' from the project list
 
@@ -54,8 +54,7 @@ Our database is called "Website" and it contains the three mentioned collections
 ![Screenshot 2024-04-20 201215](https://github.com/Bortiz25/pet-store-website/assets/94881226/a8733644-4e1a-4ad7-ac26-7ff758b4f55f)
 
 In the case that you manually add in data to the 'products' collection, make sure to follow our data validation rules. 
-Strings in the catrgory array must be lowercase. Also, the first letter of the value for the "category" field must be capitalized. 
-
+Strings in the catrgory array must start with a lowercase letter. Also, the first letter of the value for the "category" field must be capitalized.
 
 ### 'products' collection schema
 
@@ -69,9 +68,9 @@ Strings in the catrgory array must be lowercase. Also, the first letter of the v
 "description": String,   
 }
 
-The 'products' collection stores product documents in JSON format. Each product document has a unique object ID that is automatically inserted each time you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" field for a product can be "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
+The 'products' collection stores product documents in JSON format. Each product document has a unique 'objectID' that is automatically inserted when you create a new document. The "productTag" field is an array of strings used for filtering products and "img" is a url to the product image. The "category" value for a product can be "Bird" or "Ferret". Products for both animals have "Both" as their category value. 
 
-Below is an example of a document in the 'products' collection. A collection is a list of 'product' documents.
+Below is an example of a document in the 'products' collection. A collection is a list of 'product' documents. 
 
 {   
 "_id": ObjectId(849jkhsu4799o598),    
@@ -117,10 +116,10 @@ MongoDB is a flexible database, so you can insert a 'user' document without iden
 
 The action field has the string value "Added product" or "Deleted product". The "timestamp" value is a javascript Date object stringifyed.
 Whenever we add or delete a product from the 'products' collection, we also add the product to the 'audits' collection. This allows us to display the audited data on 
-our admin Page.
+our admin page.
 ## database.js
 
-The database file contains code to connect our Node.js application to MongoDB. 
+This database `.js` file contains code to connect our Node.js application to MongoDB. 
 
 ```
 const mongoose = require("mongoose");
@@ -141,41 +140,40 @@ const connectDb = async () => {
 }
 ```
 
-The mongoose.connect() function has a uri string paramater. The uri string for our database is located in our '.env' file. If you change the username, password, or name of our database, you will have to update the uri string.
+The mongoose.connect() function has a uri string parameter. The uri string for our database is located in our '.env' file. If you change the username, password, or name of our database, you will have to update the uri string.
 After we connect to our database, we access our collections using 'mongoose.Models()'. 
 
 ## Models  
 The `models/` directory contains the product, user, and audit `.js` files with their corresponding schemas. We create models for each schema to define data validation rules and enable easy querying of data in MongoDB.
 
-We use the mongoose.schema() function to create a 'new' object that contains the same fields and datatypes as our product collection in MongoDB. 
+We use the mongoose.schema() function to create a 'new' object that contains the same fields and datatypes as our 'products' collection in MongoDB. 
 
 ```
-const productSchema = new mongoose.Schema({productName: String, ...,price: Number});
+const productSchema = new mongoose.Schema({productName: String, ... ,price: Number});
 ```
 We then use the mongoose.model() function to create a model of the schema. 
 
-The first argument of the 'model' function is the name of the schema you created. This argument refers to the capitalized, singular name of the collection name in our database. We use 'Product' as the first argument to refer to our 'products' collection.
+The first argument of mongoose.model() refers to the capitalized, singular name of the collection name in our database. For example, we use 'Product' as the first argument to refer to our 'products' collection.
 
 The second argument is the variable containing the schema.
 
 ```
-const Product = mongoose.model(Product, productSchema);
+const Product = mongoose.model('Product', productSchema);
 ```
 
-The user and audit javscript files have the same structure as this 'products' file. 
+The user and audit JavaScript files use identical structures to define their schemas and models.
 
 ## Controllers
-The 'productController' and 'userController' javascript files are located in the `contollers/` directory. The 'productController' contains functions to add, delete, and fetch products in our 'products' and 'audits' collections. The 'userController' contains functions to add and find users in our 'users' collection.
+The 'productController' and 'userController' JavaScript files are located in the `contollers/` directory. The 'productController' contains functions to add, delete, and fetch products in our 'products' and 'audits' collections. The 'userController' contains functions to add and find users in our 'users' collection.
 
 ### Product Controller
 
 Once we import the Product model to this file, we use mongoose.find() and mongose.exists() to query products.  
 
-Model.find() returns a query object. If we pass no paramaters to the function, we get an array of all JSON documents from that 'Model'.
+Model.find() returns a query object. 
+Model.exists() returns a document with its 'ObjectId' if at least one document exists with the parameters passed in. The function returns null otherwise.
 
-Model.exists() returns a document with its _id if at least one document exists with the parameters passed in. The function returns null otherwise.
-
-Our code with the above functions start in the '**fetchProducts()**' section. 
+Below you will see how we use these monogoose functions in our code. 
 
 **fetchProducts()**  
 
@@ -185,13 +183,13 @@ Below is the first main line of code used in the 'fetchProducts()' function:
 ```
 const productList = await Product.find();
 ```
-We use mongoose.find() to retrieve a JSON array contanining all documents from MongoDB that match the sturcture defined by the Product model.
+We use mongoose.find() to retrieve a JSON array contanining all documents from MongoDB that match the sturcture defined by our 'Product' model.
 
-### ℹ️ Mongoose queries are not native javascript promises. We use them with 'await' to pause execution until the query is completed. 
+### ℹ️ Mongoose queries are not native JavaScript promises. We use them with 'await' to pause execution until the query is completed. 
 
-We then iterate through the 'productList' array and convert each JSON document into instances of our javascript 'Product' class.  
+We then iterate through the 'productList' array and convert each JSON document into instances of our JavaScript 'Product' class.  
 
-**Remember** the async 'fetchProducts()' function returns a promise. So when we use that function in the directory **`routes/adminPage`**, we use the 'await' keyword to wait for the promise to resolve. 
+**Remember** the async 'fetchProducts()' function returns a promise. So when we use that function in the directory **`routes/adminPage`**, we use the 'await' keyword to wait for the promise to resolve. Below is an example of this code:  
 ```
 // render admin page
    router.get('/', async function(req,res,next) {
@@ -207,6 +205,8 @@ We then iterate through the 'productList' array and convert each JSON document i
   });
 ```
 This structure is mimicked each time we use the functions in our 'userController' or 'productController' `.js` files.  
+
+> Next is a detailed overview of all of our functions in our 'productController' file
 
 **addProduct()**
 
@@ -239,15 +239,14 @@ The async 'addAudit' function accepts the name, admin name, and action paramater
 
 [More examples of Mongoose querying and documentation](https://mongoosejs.com/docs/queries.html)  
 
-
-    
+> Now you can take a look at our 'userController'.     
 
 ### User Controller  
 
 **addUser()**
 The async 'addUser()' function accepts the fstName, lstName, email, address, country, state, username, and password parameters. Inside the function, we initialize an 'isAdmin' variable to false. The function is similar to 'addProducts()' in the 'productsController' file. 
 
-In the async 'findUser' function we use mongoose.find() to return an array of queried user documents.
+In the async 'findUser()' function we use mongoose.find() to return an array of queried user documents.
 
 ```
 const ret = await User.find({userName: username, password: pw});
@@ -280,7 +279,7 @@ Example of a `index.js` file that is rendering the index page using the routes.
 All of our 'POST' and 'GET' requests are in the `/routes` directory. Below is an example of a POST HTTP request that adds a product to our database when a form is submitted. 
 The following code is in `routes\addProduct`.
 
-> Note: The 'productsFunction' is and object with methods "addProduct(<parameters>)" and "addAudit( productName , adminName , action )"
+> Note: The 'productsFunction' is and object with the methods "addProduct(<parameters>)" and "addAudit( productName , adminName , action )"
 
 ```
 // route to add product when admin submits 'addProduct.ejs' form
@@ -302,7 +301,7 @@ router.post('/', async (req, res, next) => {
  # `.ejs` files 
 - about.ejs  
 - accountPage.ejs  
-   Page that displays the user's information when they login 
+   Page that displays the user's information when they login.
 - addProduct.ejs  
     Includes the form admin users submit to add a new product.
 - adminPage.ejs  
@@ -310,9 +309,9 @@ router.post('/', async (req, res, next) => {
 - audit.ejs  
    Includes the audit table for all products.
 - login.ejs/signup.ejs  
-    This page includes the form users can submit to create/login to their account
+    This page includes the form users can submit to create/login to their account.
 - products.ejs     
-   This page contains a grid of available products and code to filter 
+   This page contains a grid of available products and code to filter
    products by tags.
 - shoppingCart.ejs
   
