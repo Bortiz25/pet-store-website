@@ -1,4 +1,4 @@
-const {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct} = require('./controllers/productController');
+const {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct, deleteAudit} = require('./controllers/productController');
 const {addUser, findUser} = require('./controllers/userController');
 const {connectMongoMemory, closeDatabase, dropCollections} = require('./memoryDatabase');
 
@@ -89,6 +89,27 @@ test("findUser", async (done) => {
     const nonUser = await findUser("testuser2","4321");
     expect(nonUser.access).toBe(false);
 
+    done();
+});
+
+test("deleteAudit", async (done) => {
+    // Audits should be empty before any adds
+    let audits = await auditProducts();
+    expect(audits.length).toBe(0);
+
+    // Add product audit
+    expect(await addAudit("testProduct1","testAdmin1","Add product")).toBe(true);
+    audits = await auditProducts();
+    expect(audits.length).toBe(1);
+
+    // Attempt to delete testProduct1 from database, should be successful
+    expect(await deleteAudit("testProduct1")).toBe(true);
+    audits = await auditProducts();
+    expect(audits.length).toBe(0);
+
+    // Attempt to delete product that is not in the database, this should be unsuccessful
+    expect(await deleteAudit("testProduct1")).toBe(false);
+    
     done();
 });
 
