@@ -19,4 +19,4 @@ class AuditClass {
 
 const Audit = mongoose.model('Audit', auditSchema);
 
-module.exports = {AuditClass, Audit };
+module.exports = {AuditClass, Audit};
