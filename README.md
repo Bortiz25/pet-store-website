@@ -2,6 +2,7 @@
 ## Legend
 
 - [Setup](#setup)
+- [Database access](#mongoDB)
 - [Database.js](#database.js)
 - [Models](#models)
 - [Controllers](#controllers)
@@ -46,6 +47,7 @@ You should now be on the 'Overview' page shown below:
 <img width="541" alt="DB SS" src="https://github.com/Bortiz25/pet-store-website/assets/94881226/a9c319be-cc8a-421d-8c75-972d16136525">
 
 Once you click on the 'Browse collections' tab, you can see our 'audits', 'products', and 'users' collections.
+Our database is called "Website" and it contains the three mentioned collections. 
 
 ### ℹ️ A collection is like a table in SQL and a document is like a row in an SQL table.
 
