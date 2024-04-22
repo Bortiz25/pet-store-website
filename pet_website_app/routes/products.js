@@ -1,10 +1,10 @@
 var express = require('express')
 var router = express.Router()
 const productFunctions = require ('../controllers/productController');
+const userFunctions = require ('../controllers/userController');
 
 
 router.get('/', async function(req,res,next) {
-  console.log(req.session);
   try {
   productObjects = await productFunctions.fetchProducts();
 
@@ -70,5 +70,24 @@ router.post('/', async (req, res) => {
     });
   } catch(error){console.error("Error filtering products")}
 })
+
+router.post('/:productId', async (req,res,next)=> {
+  try {
+    if(req.session.user==undefined) { //if user is not logged in
+      res.send(
+        '<script> alert("Please sign in before shopping"); </script>'+
+        '<script> window.location.href = "/pages/login"; </script>'
+      );
+    }
+    else { //if user is logged in
+      let user = req.session.user.username;
+      let prod = req.params.productId;
+      productFunctions.addToCart(user, prod, 1);
+      res.redirect('/pages/products');
+    }
+  } catch (error){
+    console.log("Error adding product to cart", error);
+  }
+});
 
 module.exports = router;

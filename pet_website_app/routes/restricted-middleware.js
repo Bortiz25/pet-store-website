@@ -1,5 +1,5 @@
 const adminMiddleware = (req, res, next) => {
-    console.log('comeplete user session', req.session);
+    //console.log('comeplete user session', req.session);
     if(req.session && req.session.user){
         if(req.session.user.isAdmin) next();
     }else {

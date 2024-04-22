@@ -17,7 +17,8 @@ async function addUser(fstName, lstName, email, address, country, state,
             country: country,
             userName: username,
             password: pw,
-            isAdmin: isAdmin
+            isAdmin: isAdmin,
+            cart: []
         });
         await newUser.save();
         return true;

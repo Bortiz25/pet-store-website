@@ -1,5 +1,6 @@
 const {Product, ProductClass} = require ('../models/product');
 const {Audit, AuditClass} = require ('../models/audit');
+const {User, UserClass} = require ('../models/user');
 
 async function auditProducts() {
     try {
@@ -57,6 +58,25 @@ async function addProduct(_name,_price,_tags,_category,_img,_description) {
   }
 }
 
+async function addToCart(username, prodName, amt) {
+  const prod = await Product.findOne({productName: prodName});
+  let cost = prod.price * amt;
+  let newProd = prod;
+  newProd.price = cost;
+  await User.updateOne({ userName : username }, { $pull: { cart : {productName : prodName} } });
+  //await User.updateOne({ userName : username }, { $pull: {cart : {productName : prodName}} });
+ await User.updateOne({ userName : username }, { $addToSet: {cart : newProd}} );
+}
+
+async function removeFromCart(username, prodName) {
+  const prod = await Product.findOne({productName: prodName});
+  await User.updateOne({ userName : username }, { $pull: { cart : {productName : prodName} } });
+}
+
+async function clearCart(username) {
+  await User.updateOne({ userName : username }, { cart : [] });
+}
+
 async function addAudit(_name,_admin,_action) {
   try {
     const prod = new Audit({productName : _name,
@@ -82,7 +102,6 @@ async function deleteProduct(_name) {
   return false;
 
  }
-
 }
 async function deleteAudit(_name) {
   try {
@@ -97,5 +116,12 @@ async function deleteAudit(_name) {
  
  }
 
+async function subtotal(cart) {
+  let sum = 0;
+  for(i=0; i < cart.length; i++) {
+    sum+=cart[i].price;
+  }
+  return sum;
+}
 
-module.exports = {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct, deleteAudit}; 
+module.exports = {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct, deleteAudit, addToCart, removeFromCart, subtotal, clearCart}; 

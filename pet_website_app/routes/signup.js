@@ -29,6 +29,7 @@ const userFunctions = require ('../controllers/userController');
                 );
         }
 
+         res.render('pages/login', {title: 'Sign In'});
      });
 
 router.get('/', function(req, res, next){
