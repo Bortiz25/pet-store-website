@@ -9,12 +9,13 @@
       <button type="button" class="collapsible">Order Summary</button>
       <div class="content" style="display: block;">
         <p>Subtotal: $<%=subtotal%></p>
-        <p>Shipping: $10</p>
+        <p>Shipping: $5</p>
         <p>Tax: $<%=(Math.round(subtotal * 8.25) / 100)%></p>
-        <p>Total: $<%=(Math.round(subtotal * 8.25) / 100) + subtotal%></p>
+        <p>Total: $<%=(Math.round(((subtotal * 108.25) + 500)) / 100)%></p>
         <form action="/" method="post">
           <button type="submit">Checkout</button>
         </form>
+        <br>
       </div>
 
       <% for(i=0;i<products.length;i++) {%>
