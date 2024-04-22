@@ -18,6 +18,7 @@ const signupRouter = require('./routes/signup');
 const addProductRouter = require('./routes/addProduct');
 const shoppingCartRouter = require('./routes/shoppingCart');
 const adminRouter = require('./routes/adminPage');
+const accountPageRouter = require('./routes/accountPage');
 var auditRouter = require('./routes/audit');
 const restricted = require('./routes/restricted-middleware');
 
@@ -64,6 +65,7 @@ app.use('/pages/addProduct', restricted.adminMiddleware, addProductRouter)
 app.use('/pages/shoppingCart',shoppingCartRouter)
 app.use('/pages/adminPage', restricted.adminMiddleware, adminRouter);
 app.use('/pages/audit',restricted.adminMiddleware,auditRouter);
+app.use('/pages/accountPage', accountPageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
