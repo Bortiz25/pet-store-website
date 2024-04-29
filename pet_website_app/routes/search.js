@@ -20,13 +20,13 @@ router.get('/', async function(req,res,next) {
 });
 
 router.post('/', async (req, res) => {
-  const term = req.body.search;
+  const term = req.body.search.toLowerCase();
   console.log(term);
   try {
     productObjects = await productFunctions.fetchProducts();
     let searched = [];
     for(i=0; i < productObjects.length; i++) {
-      if((productObjects[i].productName).toLowerCase() == term.toLowerCase()) { searched.push(productObjects[i]) }
+      if((productObjects[i].productName).toLowerCase().includes(term)) { searched.push(productObjects[i]) }
     }
     res.render('pages/products', {
       title: 'Products',
