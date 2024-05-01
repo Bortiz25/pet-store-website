@@ -1,7 +1,8 @@
 const {addProduct, fetchProducts, addAudit, auditProducts, deleteProduct, deleteAudit} = require('./controllers/productController');
 const {addUser, findUser} = require('./controllers/userController');
 const {connectMongoMemory, closeDatabase, dropCollections} = require('./memoryDatabase');
-
+//const request = require('supertest');
+const app = require('./app');
 // Runs before tests start
 beforeAll( async (done) => {
     // Creates connection to in-memory database
@@ -113,9 +114,30 @@ test("deleteAudit", async (done) => {
     done();
 });
 
+//filtering tests 
+describe('Search Filtering Functionality', () => {
+    test('filter products by animal type', async () =>{
+       // Define a mock request object with the necessary properties
+       const req = {
+        method: 'POST',
+        url: '/pages/products',
+        body: { animal: 'Birds' },
+    };
+    // Define a mock response object with necessary methods and properties
+    const res = {
+        status: jest.fn().mockReturnThis(),
+        render: jest.fn(),
+        end: jest.fn(), 
+    };
+    const next = jest.fn();
+    await app(req, res, next);
+    // Assert that the response status is 200
+    expect(res.status).toHaveBeenCalledWith(200);
+});
+
 // Executes after all tests have been finished
 afterAll(async (done) => {
     // Closes connection to and drops memory database
     await closeDatabase();
     done();
-},10000);
+    },10000)});
