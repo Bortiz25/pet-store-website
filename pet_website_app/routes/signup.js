@@ -6,6 +6,7 @@ const userFunctions = require ('../controllers/userController');
 
  router.post('/', async (req, res, next ) => {
     // returns boolean 'true' if account was added to database  
+    const user1 = req.session.user; //for passthrough for login logout functionality
     const addedUser = await userFunctions.addUser(req.body.fname,
              req.body.lname,
              req.body.email,
@@ -29,13 +30,13 @@ const userFunctions = require ('../controllers/userController');
                 );
         }
 
-         res.render('pages/login', {title: 'Sign In'});
+         res.render('pages/login', {title: 'Sign In', user: user1});
      });
 
 router.get('/', function(req, res, next){
+    const user1 = req.session.user; //for passthrough for login logout functionality
     res.render('pages/signup', {
-        title: 'Sign Up'
-    });
+        title: 'Sign Up', user:user1 });
 });
 
 module.exports = router;

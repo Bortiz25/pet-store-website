@@ -5,6 +5,7 @@ const productFunctions = require('../controllers/productController');
 
 // route to add product when admin submits 'addProduct.ejs' form
 router.post('/', async (req, res, next) => {
+      const user = req.session.user;
       const addedProd = await productFunctions.addProduct(
         req.body.name,
         Number(req.body.price),
@@ -30,7 +31,7 @@ router.post('/', async (req, res, next) => {
   });
       
     router.get('/', function(req, res, next) {
-      res.render('pages/addProduct', { title: 'Add product'});
+      res.render('pages/addProduct', { title: 'Add product', user: user});
     });
 
 module.exports = router;

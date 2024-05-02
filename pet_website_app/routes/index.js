@@ -5,7 +5,8 @@ const { User } = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Parrots and Ferrets' });
+  const user = req.session.user;
+  res.render('index', { title: 'Parrots and Ferrets', user: user });
 });
 
 router.post('/', async function(req, res, next) {

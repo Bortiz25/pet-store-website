@@ -7,22 +7,26 @@ const { User } = require('../models/user');
 router.get('/', async function(req, res, next) {
   let display = [];
   let sum = 0;
+  const user1 = req.session.user; //for passthrough for login logout functionality
   if(req.session.user==undefined) {
   }
   else {
     const user = await User.findOne( {userName : req.session.user.username} );
     display = user.cart;
     sum = await productFunctions.subtotal(display);
+
   }
   res.render('pages/shoppingCart', {
     title: 'Shopping Cart',
     products: display,
-    subtotal: (Math.round(sum * 100) / 100)
+    subtotal: (Math.round(sum * 100) / 100),
+    user: user1
   });
 });
 
 router.post('/:productId', async (req,res,next)=> {
   try {
+    const user1 = req.session.user; //for passthrough for login logout functionality
     if(req.session.user!=undefined) { //if user is not logged in
       let num = req.body.number;
       let username = req.session.user.username;
@@ -40,7 +44,8 @@ router.post('/:productId', async (req,res,next)=> {
       res.render('pages/shoppingCart', {
         title: 'Shopping Cart',
         products: display,
-        subtotal: (Math.round(sum * 100) / 100)
+        subtotal: (Math.round(sum * 100) / 100),
+        user: user1
       });
     }
   } catch (error){

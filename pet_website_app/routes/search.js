@@ -5,6 +5,7 @@ const productFunctions = require ('../controllers/productController');
 
 router.get('/', async function(req,res,next) {
   console.log(req.session);
+  const user = req.session.user;
   try {
   productObjects = await productFunctions.fetchProducts();
 
@@ -13,6 +14,7 @@ router.get('/', async function(req,res,next) {
     products: productObjects,
     tags: [],
     animal: "Both",
+    user: user
   });
   } catch (error) {
     console.error('Error searching: ', error);
@@ -21,6 +23,7 @@ router.get('/', async function(req,res,next) {
 
 router.post('/', async (req, res) => {
   const term = req.body.search;
+  const user = req.session.user;
   console.log(term);
   try {
     productObjects = await productFunctions.fetchProducts();
@@ -33,6 +36,7 @@ router.post('/', async (req, res) => {
       products: searched,
       tags: [],
       animal: "Both",
+      user: user
     });
   } catch(error){console.error("Error searching products")}
 })

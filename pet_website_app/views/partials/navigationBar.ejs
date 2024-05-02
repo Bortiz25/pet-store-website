@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <link rel='stylesheet' href='/sytlesheets/style.css'/>
-      <nav class="sticky">
+<head>
+    <link rel='stylesheet' href='/sytlesheets/style.css'/>
+    <nav class="sticky">
         <nav class="navBar" style="background-color:black; justify-content: flex-end;">
-          <a style="font-size: 16px; padding:10px" href="/pages/shoppingCart">Cart</a>
-          <a style="font-size: 16px; padding:10px" href="/pages/login">Sign In</a>
+            <a style="font-size: 16px; padding:10px" href="/pages/shoppingCart">Cart</a>
+            <% if (user) { %>
+                <!-- User is logged in, show Logout link -->
+                <a style="font-size: 16px; padding:10px" href="/pages/login">Logout</a>
+            <% } else { %>
+                <!-- User is not logged in, show Sign In link -->
+                <a style="font-size: 16px; padding:10px" href="/pages/login">Sign In</a>
+            <% } %>
         </nav>
         <nav class="navBar" style="background-color: #afc4e3;">
-          <a style="color: rgb(0, 0, 0); font-family: 'Caudex'; font-size: 25px; font-weight:normal;" href="/" >Parrots and Ferrets</a>
-          <a style="color: rgb(0, 0, 0);" href="/pages/products" >SHOP</a>
-          <a style="color: rgb(0, 0, 0); margin-right: auto; flex: 1;" href="/pages/about" >ABOUT</a>
-          <form action="/pages/search" method="POST">
-            <input type="text" id="search" name="search" placeholder="Search">
-          </form>
+            <a style="color: rgb(0, 0, 0); font-family: 'Caudex'; font-size: 25px; font-weight:normal;" href="/" >Parrots and Ferrets</a>
+            <a style="color: rgb(0, 0, 0);" href="/pages/products" >SHOP</a>
+            <a style="color: rgb(0, 0, 0); margin-right: auto; flex: 1;" href="/pages/about" >ABOUT</a>
+            <form action="/pages/search" method="POST">
+                <input type="text" id="search" name="search" placeholder="Search">
+            </form>
         </nav>
-      </nav>
-    </head>
+    </nav>
+</head>
 </html>

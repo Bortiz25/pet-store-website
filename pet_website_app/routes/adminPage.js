@@ -14,11 +14,13 @@ const productFunctions = require ('../controllers/productController');
     });
    // render admin page
    router.get('/', async function(req,res,next) {
+    const user = req.session.user;
     try {
     productObjects = await productFunctions.fetchProducts();
     res.render('pages/adminPage', {
       title: 'Admin Dashboard',
-      products: productObjects
+      products: productObjects,
+      user: user
     });
     } catch (error) {
         console.error('Error fetching products: ', error);

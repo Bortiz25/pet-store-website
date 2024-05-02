@@ -3,11 +3,13 @@ const router = express.Router();
 const productFunctions = require ('../controllers/productController');
 
    router.get('/', async function(req,res,next) {
+    const user = req.session.user;
     try {
     productObjects = await productFunctions.auditProducts();
     res.render('pages/audit', {
       title: 'Audit',
-      products: productObjects
+      products: productObjects,
+      user: user
     });
     } catch (error) {
         console.error('Error fetching audit products: ', error);

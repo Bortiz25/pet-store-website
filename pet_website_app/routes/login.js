@@ -38,10 +38,11 @@ router.post('/', async (req, res) => {
     }
 });
 
-/* GET login page */ 
+/* GET login page */
 router.get('/', function (req, res) {
     if(req.session.user) req.session.user = null;
-    res.render('pages/login', {title: 'Sign In'});
+    const user = undefined; // REQUISITE TO RERENDER THE LOGOUT BUTTON
+    res.render('pages/login', {title: 'Sign In', user: user});
 });
 
 module.exports = router;

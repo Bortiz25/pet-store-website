@@ -3,6 +3,7 @@ const router = express.Router();
 const userFunctions = require ('../controllers/userController');
 
 router.get('/', (req, res) => {
+    const user = req.session.user;
     if(req.session.user && req.session){
         const username = req.session.user.username;
         const firstName = req.session.user.name;
@@ -16,7 +17,8 @@ router.get('/', (req, res) => {
             firstName: firstName,
             lastName: lastName,
             address: address,
-            state: state
+            state: state,
+            user: user
         });
     } else {
         res.redirect('login');
