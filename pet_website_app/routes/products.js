@@ -22,6 +22,7 @@ router.get('/', async function(req,res,next) {
 router.post('/', async (req, res) => {
   const fAnimal = req.body.animal;
   const fTags = req.body.tag;
+  console.log('Received request with animal type:', fAnimal); // Log the animal type
   try {
     productObjects = await productFunctions.fetchProducts();
     let productObjectsFilteredAnimal = [];

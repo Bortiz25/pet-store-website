@@ -59,13 +59,24 @@ async function addProduct(_name,_price,_tags,_category,_img,_description) {
 }
 
 async function addToCart(username, prodName, amt) {
-  const prod = await Product.findOne({productName: prodName});
+  const prod = await Product.findOne({ productName: prodName });
+  if (!prod) {
+    throw new Error("Product not found");
+  }
+  
   let cost = prod.price * amt;
-  let newProd = prod;
-  newProd.price = cost;
-  await User.updateOne({ userName : username }, { $pull: { cart : {productName : prodName} } });
-  //await User.updateOne({ userName : username }, { $pull: {cart : {productName : prodName}} });
- await User.updateOne({ userName : username }, { $addToSet: {cart : newProd}} );
+  let newProd = {
+    productName: prod.productName,
+    price: cost,
+    quantity: amt
+  };
+  
+  await User.updateOne(
+    { userName: username },
+    {
+      $addToSet: { cart: newProd }
+    }
+  );
 }
 
 async function removeFromCart(username, prodName) {
