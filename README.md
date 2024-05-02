@@ -424,3 +424,14 @@ indicates data about the admin and items.
 
 This table indicates when you add and delete products as an admin. 
 
+## Maintenance 
+### Search functionality
+- Implement fuzzy search to make the search functionality to be more elastic.
+- Run the following command to have fuse.js as a dependency in the package.json file: `npm install fuse.js --save`
+  
+### Cart functionality
+
+### Testing
+- implemented minor tests for filtering functionality
+- as well as more assertions in already existing tests
+- uses supertest run the following command to install: npm install supertest 
