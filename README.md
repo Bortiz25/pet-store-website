@@ -432,3 +432,6 @@ This table indicates when you add and delete products as an admin.
 ### Cart functionality
 
 ### Testing
+- implemented minor tests for filtering functionality
+- as well as more assertions in already existing tests
+- uses supertest run the following command to install: npm install supertest 
